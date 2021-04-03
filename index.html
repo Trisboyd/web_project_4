@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
+    <link rel="stylesheet" href="styles.css">
+    <title>Around the US</title>
+</head>
+
+<body class="page">
+    <header class="header">
+        <img class="header__img" src="images/AroundUS.png">
+    </header>
+
+    <main>
+        <div class="edit-profile edit-profile__display">
+            <img class="edit-box__exit" src="images/Close Icon.png" alt="exit">
+            <form class="edit-box">
+                <h3 class="edit-box__title">Edit Profile</h3>
+                <input type="text" value="Francisco Coronado" class="edit-box__text">
+                <input type="text" value="Conquistador" class="edit-box__text">
+                <input type="submit" value="Save" class="edit-box__submit">
+            </form>
+        </div>
+
+        <section class="profile">
+            <img class="profile__pic" src="images/coronado.jpeg">
+            <div class="profile__text">
+                <h2 class="profile__name">Francisco Coronado <img class="profile__edit-button"
+                        src="images/edit-name.png"></h2>
+                <p class="profile__descriptor">Conquistador</p>
+            </div>
+            <img class="add-song-button" src="images/add-place.png">
+
+        </section>
+
+        <section class="places">
+            <article class="place">
+                <img class="place__image" src="images/gulf-of-california.jpg">
+                <div class="place__info">
+                    <h3 class="place__name">Gulf of California</h3>
+                    <svg class="place__like-button" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.8368 2.20277L18.8394 2.20544C20.7188 4.13299 20.7225 7.31163 18.8368 9.26495L10.4812 17.9202L2.14988 9.29C1.25494 8.34225 0.75 7.08483 0.75 5.74496C0.75 4.39717 1.23873 3.14375 2.14714 2.20276L2.14715 2.20277L2.14972 2.20008C3.99577 0.268703 7.0174 0.264567 8.88883 2.22231L8.88883 2.22231L8.89139 2.22497L9.94166 3.3129L10.4867 3.87752L11.0261 3.30743L12.0736 2.20014C13.9438 0.265745 16.9677 0.266621 18.8368 2.20277Z"
+                            stroke="black" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </article>
+            <article class="place">
+                <img class="place__image" src="images/grand-canyon.jpg">
+                <div class="place__info">
+                    <h3 class="place__name">Grand Canyon</h3>
+                    <svg class="place__like-button" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.8368 2.20277L18.8394 2.20544C20.7188 4.13299 20.7225 7.31163 18.8368 9.26495L10.4812 17.9202L2.14988 9.29C1.25494 8.34225 0.75 7.08483 0.75 5.74496C0.75 4.39717 1.23873 3.14375 2.14714 2.20276L2.14715 2.20277L2.14972 2.20008C3.99577 0.268703 7.0174 0.264567 8.88883 2.22231L8.88883 2.22231L8.89139 2.22497L9.94166 3.3129L10.4867 3.87752L11.0261 3.30743L12.0736 2.20014C13.9438 0.265745 16.9677 0.266621 18.8368 2.20277Z"
+                            stroke="black" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </article>
+            <article class="place">
+                <img class="place__image" src="images/rocky-mountains.jpg">
+                <div class="place__info">
+                    <h3 class="place__name">Rocky Mountains</h3>
+                    <svg class="place__like-button" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.8368 2.20277L18.8394 2.20544C20.7188 4.13299 20.7225 7.31163 18.8368 9.26495L10.4812 17.9202L2.14988 9.29C1.25494 8.34225 0.75 7.08483 0.75 5.74496C0.75 4.39717 1.23873 3.14375 2.14714 2.20276L2.14715 2.20277L2.14972 2.20008C3.99577 0.268703 7.0174 0.264567 8.88883 2.22231L8.88883 2.22231L8.89139 2.22497L9.94166 3.3129L10.4867 3.87752L11.0261 3.30743L12.0736 2.20014C13.9438 0.265745 16.9677 0.266621 18.8368 2.20277Z"
+                            stroke="black" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </article>
+            <article class="place">
+                <img class="place__image" src="images/rio-grande-river.jpg">
+                <div class="place__info">
+                    <h3 class="place__name">Rio Grande River</h3>
+                    <svg class="place__like-button" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.8368 2.20277L18.8394 2.20544C20.7188 4.13299 20.7225 7.31163 18.8368 9.26495L10.4812 17.9202L2.14988 9.29C1.25494 8.34225 0.75 7.08483 0.75 5.74496C0.75 4.39717 1.23873 3.14375 2.14714 2.20276L2.14715 2.20277L2.14972 2.20008C3.99577 0.268703 7.0174 0.264567 8.88883 2.22231L8.88883 2.22231L8.89139 2.22497L9.94166 3.3129L10.4867 3.87752L11.0261 3.30743L12.0736 2.20014C13.9438 0.265745 16.9677 0.266621 18.8368 2.20277Z"
+                            stroke="black" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </article>
+            <article class="place">
+                <img class="place__image" src="images/palo-duro.jpg">
+                <div class="place__info">
+                    <h3 class="place__name">Palo Duro Canyon</h3>
+                    <svg class="place__like-button" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.8368 2.20277L18.8394 2.20544C20.7188 4.13299 20.7225 7.31163 18.8368 9.26495L10.4812 17.9202L2.14988 9.29C1.25494 8.34225 0.75 7.08483 0.75 5.74496C0.75 4.39717 1.23873 3.14375 2.14714 2.20276L2.14715 2.20277L2.14972 2.20008C3.99577 0.268703 7.0174 0.264567 8.88883 2.22231L8.88883 2.22231L8.89139 2.22497L9.94166 3.3129L10.4867 3.87752L11.0261 3.30743L12.0736 2.20014C13.9438 0.265745 16.9677 0.266621 18.8368 2.20277Z"
+                            stroke="black" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </article>
+            <article class="place">
+                <img class="place__image" src="images/great-plains.jpg">
+                <div class="place__info">
+                    <h3 class="place__name">Great Plains</h3>
+                    <svg class="place__like-button" width="21" height="19" viewBox="0 0 21 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M18.8368 2.20277L18.8394 2.20544C20.7188 4.13299 20.7225 7.31163 18.8368 9.26495L10.4812 17.9202L2.14988 9.29C1.25494 8.34225 0.75 7.08483 0.75 5.74496C0.75 4.39717 1.23873 3.14375 2.14714 2.20276L2.14715 2.20277L2.14972 2.20008C3.99577 0.268703 7.0174 0.264567 8.88883 2.22231L8.88883 2.22231L8.89139 2.22497L9.94166 3.3129L10.4867 3.87752L11.0261 3.30743L12.0736 2.20014C13.9438 0.265745 16.9677 0.266621 18.8368 2.20277Z"
+                            stroke="black" stroke-width="1.5" />
+                    </svg>
+                </div>
+            </article>
+
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p class="footer-text">&copy; 2021 Around The U.S.</p>
+    </footer>
+
+</body>
