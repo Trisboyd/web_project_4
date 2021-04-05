@@ -323,10 +323,6 @@
     opacity: .5;
 }
 
-.place__like-button:active {
-    fill:rgb(0, 0, 0)
-}
-
 .footer {
     margin: 0 auto 0;
     max-width: 68.75%;
