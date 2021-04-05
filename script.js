@@ -16,6 +16,7 @@ let editDescriptor = document.getElementById("profile-descriptor");
 
 let saveButton = document.getElementById("save-button");
 
+
 function changeDisplay() {
     profileEditor.classList.toggle("popup__opened");
 }
