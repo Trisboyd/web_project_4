@@ -58,7 +58,7 @@
     top: 150px;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 680px) {
     .edit-box__exit {
         left: 85%;
     }
@@ -80,7 +80,7 @@
     z-index: 3;
 }
 
-@media screen and (max-width: 760px) {
+@media screen and (max-width: 680px) {
     .edit-box {
         width: 88.125%;
         height: 322px;
@@ -274,7 +274,7 @@
     margin: auto;
 }
 
-@media screen and (max-width: 380px) {
+@media screen and (max-width: 425px) {
     .places {
         max-width: 88.12%;
     }

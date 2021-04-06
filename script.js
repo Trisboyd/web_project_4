@@ -16,6 +16,8 @@ let editDescriptor = document.getElementById("profile-descriptor");
 
 let saveButton = document.getElementById("save-button");
 
+let likeButton = document.querySelectorAll(".place__button");
+
 
 function changeDisplay() {
     profileEditor.classList.toggle("popup__opened");
@@ -34,3 +36,22 @@ function changeProfile(evt) {
 
 saveButton.addEventListener("click", changeProfile);
 
+// function fillHeart(x) {
+//     x.classList.toggle("place__button_fill_none");
+//     x.classList.toggle("place__button_fill_black");
+// }
+
+// function likeButtonEvent() {
+//     for (let i=0; i<=likeButton.length-1; i++) {
+//         likeButton[i].addEventListener("click", fillHeart(likeButton[i]));
+//     }
+// }
+
+// likeButtonEvent();
+
+for (let i=0; i<=likeButton.length-1; i++) {
+            likeButton[i].addEventListener("click", function() {
+                likeButton[i].classList.toggle("place__button_fill_none")
+                likeButton[i].classList.toggle("place__button_fill_black")
+            })
+    }
