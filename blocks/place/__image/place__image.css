@@ -1,0 +1,6 @@
+.place__image {
+    display: block;
+    object-fit: cover;
+    max-width: 100%;
+    min-height: 282px;
+}

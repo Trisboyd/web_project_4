@@ -1,0 +1,10 @@
+@import url(./__button/place__button.css);
+@import url(./__button/_fill/place__button_fill_black.css);
+@import url(./__button/_fill/place__button_fill_none.css);
+@import url(./__image/place__image.css);
+@import url(./__info/place__info.css);
+@import url(./__name/place__name.css);
+
+.place {
+    max-width: 282px;
+}

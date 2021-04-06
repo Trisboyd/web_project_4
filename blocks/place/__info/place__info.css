@@ -1,0 +1,10 @@
+.place__info {
+    background-color: #fff;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    min-height: 79px;
+    align-items: center;
+    padding-left: 21px;
+    padding-right: 15px; 
+}

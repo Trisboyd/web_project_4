@@ -1,0 +1,17 @@
+.edit-box__exit {
+    position: absolute;
+    height: 40px;
+    left: 66.15%;
+    right: 30.73%;
+    top: 150px;
+}
+
+.edit-box__exit:hover {
+    opacity: 0.6;
+}
+
+@media screen and (max-width: 680px) {
+    .edit-box__exit {
+        left: 85%;
+    }
+}

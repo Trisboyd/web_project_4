@@ -1,0 +1,16 @@
+.popup__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    background-color:rgba(0, 0, 0, 0.5);
+    display: none;
+}
+
+/* this class allows the edit profile pop-up to appear when toggled off/on with js */
+.popup__opened {
+    display: flex;
+}
