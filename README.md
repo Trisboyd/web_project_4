@@ -1,16 +1,24 @@
-# Project 4: Around The U.S.
+#Around the U.S.
+##written by Tristan Boyd
 
-### Overview
+https://trisboyd.github.io/web_project_4/
 
-* Figma
-* Images
+***
 
-**Figma**
+###Updates
+---
+This particular project is scheduled for multiple small updates between the dates of 4-5-21 and 4-12-21.
 
-* [Link to the project in Figma](https://www.figma.com/file/SurN1jaeEQIhuZEDMhmWWf/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+###Description
+---
+In the early 16th century the Spanish explorer and conquistador Francisco Coronado embarked on a legendary journey across the Southwestern
+United States.  His journey took him through many amazing geographical wonders which you can explore here in this interactive website.  Do
+you dislike European explorers?  Replace his name with yours (but keep the handsome picture).  You can also choose to like certain locations
+and ignore others.
 
-**Images**
+All of these actions are available to you through basic javascript concepts such as defining variables, adding event listeners, and loops.
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
-
-Have fun with JavaScript!
+###Deployment
+---
+This webpage is offered in English only.  It should be accessible and has been formatted to appear as intended in most browsers
+without significant issues.
