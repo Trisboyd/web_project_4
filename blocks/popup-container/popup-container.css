@@ -1,0 +1,12 @@
+@import url(./__display/_type/popup-container__display_type_opened.css);
+@import url(./__display/_type/popup-container__display_type_closed.css);
+
+.popup-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    justify-content: center;
+    background-color:rgba(0, 0, 0, 0.5);
+}

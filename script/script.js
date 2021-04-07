@@ -4,7 +4,7 @@ let editProfileButton = document.querySelector(".profile__edit-button");
 
 let editExitButton = document.querySelector(".edit-box__exit")
 
-let profileEditor = document.querySelector(".popup__container");
+let profileEditor = document.querySelector(".popup-container");
 
 let profileName = document.querySelector(".profile__name");
 
@@ -20,8 +20,8 @@ let likeButton = document.querySelectorAll(".place__button");
 
 
 function changeDisplay() {
-    profileEditor.classList.toggle("popup__container_type_opened");
-    profileEditor.classList.toggle("popup__container_type_closed");
+    profileEditor.classList.toggle("popup-container__display_type_opened");
+    profileEditor.classList.toggle("popup-container__display_type_closed");
 }
 
 editProfileButton.addEventListener("click", changeDisplay);
