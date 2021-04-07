@@ -10,6 +10,10 @@
 
 @import url(../blocks/popup-container/popup-container.css);
 
+@import url(../blocks/display/display-closed.css);
+
+@import url(../blocks/display/display-opened.css);
+
 @import url(../blocks/edit-box/edit-box.css);
 
 @import url(../blocks/add-song-button/add-song-button.css);
