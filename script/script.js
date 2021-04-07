@@ -20,7 +20,8 @@ let likeButton = document.querySelectorAll(".place__button");
 
 
 function changeDisplay() {
-    profileEditor.classList.toggle("popup__container_opened");
+    profileEditor.classList.toggle("popup__container_type_opened");
+    profileEditor.classList.toggle("popup__container_type_closed");
 }
 
 editProfileButton.addEventListener("click", changeDisplay);
