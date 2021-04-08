@@ -10,17 +10,17 @@
 
 <body class="page">
     <header class="header">
-        <img class="header__img" src="images/AroundUS.png" alt="Around the U.S.">
+        <img class="header__img" src="./images/aroundtheus.svg" alt="Around the U.S.">
     </header>
 
     <main>
         <div class="popup-container display-closed">
-            <form class="edit-box">
-                <img class="edit-box__exit" src="images/Close Icon.png" alt="exit editor">
+            <form class="edit-box" name="edit-box">
+                <img class="edit-box__exit" src="./images/close-icon.svg" alt="exit editor">
                 <h3 class="edit-box__title">Edit profile</h3>
-                <input type="text" value="Francisco Coronado" id="profile-name" class="edit-box__text">
-                <input type="text" value="Conquistador" id="profile-descriptor" class="edit-box__text">
-                <input type="submit" value="Save" id="save-button" class="edit-box__submit">
+                <input type="text" value="Francisco Coronado" id="profile-name" class="edit-box__text" name="profile-name">
+                <input type="text" value="Conquistador" id="profile-descriptor" class="edit-box__text" name="profile-name">
+                <button type="submit" id="save-button" class="edit-box__submit" name="edit-box-submit">Save</button>
             </form>
         </div>
 
@@ -29,11 +29,12 @@
             <div class="profile__text">
                 <div class="profile__top-row">
                     <h1 class="profile__name">Francisco Coronado</h1>
-                    <img class="profile__edit-button" src="images/edit-name.png" alt="edit profile">
+                    <button class="profile__edit-button" type="submit"></button>
                 </div>
                 <p class="profile__descriptor">Conquistador</p>
             </div>
-            <img class="add-song-button" src="images/add-place.png" alt="add song">
+            <button class="add-place-button" type="submit"></button>
+            <!-- <img class="add-place-button" src="./images/add-place-button.svg" alt="add song" type="submit"> -->
 
         </section>
 
