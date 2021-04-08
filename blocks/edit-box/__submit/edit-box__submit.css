@@ -3,6 +3,7 @@
     min-height: 50.15px;
     background: #000000;
     border-radius: 2px;
+    border: none;
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
@@ -10,6 +11,7 @@
     text-align: center;
     color: #FFFFFF;
     margin: 48px auto 36.51px;
+    cursor:pointer;
 }
 
 .edit-box__submit:hover {

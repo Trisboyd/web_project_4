@@ -1,6 +1,7 @@
 .place__button {
     width: 21px;
     height: 19px;
+    cursor:pointer;
 }
 
 .place__button:hover {
