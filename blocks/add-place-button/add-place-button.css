@@ -3,13 +3,12 @@
     height: 50px;
     background-image: url("../../images/add-place-button.svg");
     background-color: black;
-    background-repeat: none;
+    background-repeat: no-repeat;
     background-position: center;
     object-fit: contain;
     padding: 14px 64px;
     border: 2px solid #fff;
     box-sizing: border-box;
-    margin-left: 15.3%;
     cursor:pointer;
 }
 
@@ -20,6 +19,7 @@
 
 @media screen and (max-width: 680px) {
     .add-place-button {
+        margin-left: 0;
         width: 100%;
     }
 } 
