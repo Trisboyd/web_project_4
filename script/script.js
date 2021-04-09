@@ -10,9 +10,9 @@ let profileName = document.querySelector(".profile__name");
 
 let profileDescriptor = document.querySelector(".profile__descriptor");
 
-let editName = document.getElementById("profile-name");
+let editName = document.querySelector(".edit-box__text_type_name");
 
-let editDescriptor = document.getElementById("profile-descriptor");
+let editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
 let saveButton = document.getElementById("save-button");
 

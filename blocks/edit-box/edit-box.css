@@ -2,6 +2,8 @@
 @import url(./__submit/edit-box__submit.css);
 @import url(./__text/edit-box__text.css);
 @import url(./__title/edit-box__title.css);
+@import url(./__text/_type/edit-box__text_type_descriptor.css);
+@import url(./__text/_type/edit-box__text_type_name.css);
 
 
 .edit-box {
