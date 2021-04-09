@@ -15,15 +15,15 @@
 
     <main>
         <section class="profile">
-                <img class="profile__pic" src="images/coronado.jpeg" alt="profile image">
-                <div class="profile__text">
-                    <div class="profile__top-row">
-                        <h1 class="profile__name">Francisco Coronado</h1>
-                        <button class="profile__edit-button" type="submit"></button>
-                    </div>
-                    <p class="profile__descriptor">Conquistador</p>
+            <img class="profile__pic" src="images/coronado.jpeg" alt="profile image">
+            <div class="profile__text">
+                <div class="profile__top-row">
+                    <h1 class="profile__name">Francisco Coronado</h1>
+                    <button class="profile__edit-button" type="button"></button>
                 </div>
-            <button class="profile__add-place-button" type="submit"></button>
+                <p class="profile__descriptor">Conquistador</p>
+            </div>
+            <button class="profile__add-place-button" type="button"></button>
         </section>
 
         <section class="places">
@@ -31,42 +31,42 @@
                 <img class="place__image" src="images/gulf-of-california.jpg" alt="california coastline">
                 <div class="place__info">
                     <h2 class="place__name">Gulf of California</h2>
-                    <button class="place__button place__button_fill_none" type="button"></button>
+                    <button class="place__button" type="button"></button>
                 </div>
             </article>
             <article class="place">
                 <img class="place__image" src="images/grand-canyon.jpg" alt="grand canyon">
                 <div class="place__info">
                     <h2 class="place__name">Grand Canyon</h2>
-                    <button class="place__button place__button_fill_none" type="button"></button>
+                    <button class="place__button" type="button"></button>
                 </div>
             </article>
             <article class="place">
                 <img class="place__image" src="images/rocky-mountains.jpg" alt="rocky mountains">
                 <div class="place__info">
                     <h2 class="place__name">Rocky Mountains</h2>
-                    <button class="place__button place__button_fill_none" type="button"></button>
+                    <button class="place__button" type="button"></button>
                 </div>
             </article>
             <article class="place">
                 <img class="place__image" src="images/rio-grande-river.jpg" alt="rio grande river">
                 <div class="place__info">
                     <h2 class="place__name">Rio Grande River</h2>
-                    <button class="place__button place__button_fill_none" type="button"></button>
+                    <button class="place__button" type="button"></button>
                 </div>
             </article>
             <article class="place">
                 <img class="place__image" src="images/palo-duro.jpg" alt="palo duro canyon">
                 <div class="place__info">
                     <h2 class="place__name">Palo Duro Canyon</h2>
-                    <button class="place__button place__button_fill_none" type="button"></button>
+                    <button class="place__button" type="button"></button>
                 </div>
             </article>
             <article class="place">
                 <img class="place__image" src="images/great-plains.jpg" alt="great plains">
                 <div class="place__info">
                     <h2 class="place__name">Great Plains</h2>
-                    <button class="place__button place__button_fill_none" type="button"></button>
+                    <button class="place__button" type="button"></button>
                 </div>
             </article>
 
@@ -78,17 +78,19 @@
     </footer>
 
     <div class="popup">
-        <form class="edit-box" name="edit-box">
-            <img class="edit-box__exit" src="./images/close-icon.svg" alt="exit editor">
-            <h3 class="edit-box__title">Edit profile</h3>
-            <input type="text" value="Francisco Coronado" id="profile-name" class="edit-box__text"
-                name="profile-name">
-            <input type="text" value="Conquistador" id="profile-descriptor" class="edit-box__text"
-                name="profile-name">
-            <button type="submit" id="save-button" class="edit-box__submit" name="edit-box-submit">Save</button>
-        </form>
+        <div class="popup__container">
+            <button class="edit-box__exit"></button>
+            <form class="edit-box" name="edit-box">
+                <h3 class="edit-box__title">Edit profile</h3>
+                <input type="text" value="Francisco Coronado" id="profile-name" class="edit-box__text"
+                    name="profile-name">
+                <input type="text" value="Conquistador" id="profile-descriptor" class="edit-box__text"
+                    name="profile-name">
+                <button type="submit" id="save-button" class="edit-box__submit" name="edit-box-submit">Save</button>
+            </form>
+        </div>
     </div>
-    
+
     <script src="./script/script.js"></script>
 </body>
 

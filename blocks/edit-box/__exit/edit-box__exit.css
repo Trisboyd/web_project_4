@@ -1,9 +1,15 @@
 .edit-box__exit {
     height: 40px;
     width: 40px;
-    margin-top: -10%;
-    margin-left: 100%;
-    cursor:pointer;
+    position: absolute;
+    top: 140px;
+    right: -45px;
+    cursor: pointer;
+    background-image: url(../../../images/close-icon.svg);
+    background-color: rgba(0, 0, 0, 0);
+    background-size: cover;
+    background-repeat: no-repeat;
+    border: none;
 }
 
 .edit-box__exit:hover {

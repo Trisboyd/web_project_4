@@ -4,6 +4,8 @@
     cursor:pointer;
     border: none;
     outline: none;
+    background-image: url("../../../images/heart.svg");
+    background-color: #fff;
 }
 
 .place__button:hover {
