@@ -14,18 +14,6 @@
     </header>
 
     <main>
-        <div class="popup-container display-closed">
-            <form class="edit-box" name="edit-box">
-                <img class="edit-box__exit" src="./images/close-icon.svg" alt="exit editor">
-                <h3 class="edit-box__title">Edit profile</h3>
-                <input type="text" value="Francisco Coronado" id="profile-name" class="edit-box__text"
-                    name="profile-name">
-                <input type="text" value="Conquistador" id="profile-descriptor" class="edit-box__text"
-                    name="profile-name">
-                <button type="submit" id="save-button" class="edit-box__submit" name="edit-box-submit">Save</button>
-            </form>
-        </div>
-
         <section class="profile">
                 <img class="profile__pic" src="images/coronado.jpeg" alt="profile image">
                 <div class="profile__text">
@@ -35,7 +23,7 @@
                     </div>
                     <p class="profile__descriptor">Conquistador</p>
                 </div>
-            <button class="add-place-button" type="submit"></button>
+            <button class="profile__add-place-button" type="submit"></button>
         </section>
 
         <section class="places">
@@ -88,6 +76,19 @@
     <footer class="footer">
         <p class="footer__text">&copy; 2021 Around The U.S.</p>
     </footer>
+
+    <div class="popup">
+        <form class="edit-box" name="edit-box">
+            <img class="edit-box__exit" src="./images/close-icon.svg" alt="exit editor">
+            <h3 class="edit-box__title">Edit profile</h3>
+            <input type="text" value="Francisco Coronado" id="profile-name" class="edit-box__text"
+                name="profile-name">
+            <input type="text" value="Conquistador" id="profile-descriptor" class="edit-box__text"
+                name="profile-name">
+            <button type="submit" id="save-button" class="edit-box__submit" name="edit-box-submit">Save</button>
+        </form>
+    </div>
+    
     <script src="./script/script.js"></script>
 </body>
 

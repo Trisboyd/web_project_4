@@ -1,10 +1,10 @@
-let like_button = document.querySelectorAll(".place__like-button");
+// let like_button = document.querySelectorAll(".place__like-button");
 
 let editProfileButton = document.querySelector(".profile__edit-button");
 
 let editExitButton = document.querySelector(".edit-box__exit")
 
-let profileEditor = document.querySelector(".popup-container");
+let profileEditor = document.querySelector(".popup");
 
 let profileName = document.querySelector(".profile__name");
 
@@ -20,8 +20,7 @@ let likeButton = document.querySelectorAll(".place__button");
 
 
 function changeDisplay() {
-    profileEditor.classList.toggle("display-opened");
-    profileEditor.classList.toggle("display-closed");
+    profileEditor.classList.toggle("popup_visible");
 }
 
 editProfileButton.addEventListener("click", changeDisplay);
@@ -37,9 +36,10 @@ function changeProfile(evt) {
 
 saveButton.addEventListener("click", changeProfile);
 
-for (let i=0; i<=likeButton.length-1; i++) {
-            likeButton[i].addEventListener("click", function() {
-                likeButton[i].classList.toggle("place__button_fill_none")
-                likeButton[i].classList.toggle("place__button_fill_black")
-            })
-    }
+// for later in this project
+// for (let i=0; i<=likeButton.length-1; i++) {
+//             likeButton[i].addEventListener("click", function() {
+//                 likeButton[i].classList.toggle("place__button_fill_none")
+//                 likeButton[i].classList.toggle("place__button_fill_black")
+//             })
+//     }

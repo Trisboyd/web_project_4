@@ -1,7 +1,7 @@
-.add-place-button {
+.profile__add-place-button {
     width: 150px;
     height: 50px;
-    background-image: url("../../images/add-place-button.svg");
+    background-image: url("../../../images/add-place-button.svg");
     background-color: black;
     background-repeat: no-repeat;
     background-position: center;
@@ -9,7 +9,7 @@
     padding: 14px 64px;
     border: 2px solid #fff;
     box-sizing: border-box;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .add-place-button:hover {
