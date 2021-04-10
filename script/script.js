@@ -14,29 +14,35 @@ let editName = document.querySelector(".edit-box__text_type_name");
 
 let editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
-// for use later
-// let saveButton = document.getElementById("save-button");
+let saveButton = document.getElementById("save-button");
 
 let likeButton = document.querySelectorAll(".place__button");
 
+let form = document.querySelector(".edit-box");
 
-function changeDisplay() {
-    profileEditor.classList.toggle("popup_visible");
+
+function openEditBox() {
+    profileEditor.classList.add("popup_visible");
+    editName.value = profileName.textContent;
+    editDescriptor.value = profileDescriptor.textContent;
 }
 
-editProfileButton.addEventListener("click", changeDisplay);
+function closeEditBox() {
+    profileEditor.classList.remove("popup_visible");
+}
 
-editExitButton.addEventListener("click", changeDisplay);
-
-function changeProfile(evt) {
+function handleFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editName.value;
     profileDescriptor.textContent = editDescriptor.value;
-    changeDisplay();
-};
+    closeEditBox();
+}
 
-// for use later
-// saveButton.addEventListener("submit", changeProfile);
+editProfileButton.addEventListener("click", openEditBox);
+
+editExitButton.addEventListener("click", closeEditBox);
+
+form.addEventListener("submit", handleFormSubmit);
 
 // for later in this project
 // for (let i=0; i<=likeButton.length-1; i++) {
