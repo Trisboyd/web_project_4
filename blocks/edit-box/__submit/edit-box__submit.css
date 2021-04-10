@@ -17,3 +17,10 @@
 .edit-box__submit:hover {
     background: rgba(0, 0, 0, 0.8);
 }
+
+@media screen and (max-width: 425px) {
+    .edit-box__submit {
+        font-size: 14px;
+        line-height: 17px;
+    }    
+}

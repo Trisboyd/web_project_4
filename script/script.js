@@ -14,7 +14,8 @@ let editName = document.querySelector(".edit-box__text_type_name");
 
 let editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
-let saveButton = document.getElementById("save-button");
+// for use later
+// let saveButton = document.getElementById("save-button");
 
 let likeButton = document.querySelectorAll(".place__button");
 
@@ -34,7 +35,8 @@ function changeProfile(evt) {
     changeDisplay();
 };
 
-saveButton.addEventListener("click", changeProfile);
+// for use later
+// saveButton.addEventListener("submit", changeProfile);
 
 // for later in this project
 // for (let i=0; i<=likeButton.length-1; i++) {

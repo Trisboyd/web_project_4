@@ -8,19 +8,16 @@
 
 .edit-box {
     width: 100%;
-    min-height: 330px;
     background: #FFFFFF;
     box-shadow: 0px 0px 25px rgba(0, 0, 0, 0.15);
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    margin-top: 195px;
     z-index: 3;
 }
 
 @media screen and (max-width: 680px) {
     .edit-box {
         width: 88.125%;
-        height: 322px;
     }
 }
