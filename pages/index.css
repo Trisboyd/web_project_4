@@ -20,5 +20,3 @@
 
 /* this is directly imported in order to use css precedence to open the display of the popup */
 @import url(../blocks/popup/_visible/popup_visible.css);
-
-

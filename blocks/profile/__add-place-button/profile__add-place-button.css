@@ -10,11 +10,18 @@
     border: 2px solid #fff;
     box-sizing: border-box;
     cursor: pointer;
+    margin-left: auto;
 }
 
 .profile__add-place-button:hover {
     opacity: .6;
     border: 1px solid rgba(255, 255, 255, .6);
+}
+
+@media screen and (max-width: 1024px) {
+    .profile__add-place-button {
+        margin-left: 0;
+    }
 }
 
 @media screen and (max-width: 680px) {
