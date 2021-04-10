@@ -2,7 +2,7 @@
 
 let editProfileButton = document.querySelector(".profile__edit-button");
 
-let editExitButton = document.querySelector(".edit-box__exit")
+let editExitButton = document.querySelector(".popup__exit")
 
 let profileEditor = document.querySelector(".popup");
 

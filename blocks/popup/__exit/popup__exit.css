@@ -1,4 +1,4 @@
-.edit-box__exit {
+.popup__exit {
     height: 40px;
     width: 40px;
     position: absolute;
@@ -13,12 +13,12 @@
     transition: opacity 1 1 ease-in-out;
 }
 
-.edit-box__exit:hover {
+.popup__exit:hover {
     opacity: 0.6;
 }
 
 @media screen and (max-width: 680px) {
-    .edit-box__exit {
+    .popup__exit {
         height: 26px;
         width: 26px;
         left: 85%;
