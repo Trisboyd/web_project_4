@@ -25,5 +25,6 @@
         width: 18px;
         height: 18px;
         padding: 5.25px;
+        background-image: url(../../../images/edit-button-small.svg);
     }
 }
