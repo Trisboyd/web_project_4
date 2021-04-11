@@ -27,7 +27,6 @@
 
 @media screen and (max-width: 680px) {
     .profile__add-place-button {
-        margin-left: 0;
         width: 100%;
         background-image: url(../../../images/add-place-button-small.svg);
     }
