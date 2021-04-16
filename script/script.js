@@ -1,4 +1,4 @@
-// let like_button = document.querySelectorAll(".place__like-button");
+let like_button = document.querySelectorAll(".place__like-button");
 
 let editProfileButton = document.querySelector(".profile__edit-button");
 
@@ -44,10 +44,10 @@ editExitButton.addEventListener("click", closeEditBox);
 
 form.addEventListener("submit", handleFormSubmit);
 
-// for later in this project
-// for (let i=0; i<=likeButton.length-1; i++) {
-//             likeButton[i].addEventListener("click", function() {
-//                 likeButton[i].classList.toggle("place__button_fill_none")
-//                 likeButton[i].classList.toggle("place__button_fill_black")
-//             })
-//     }
+
+for (let i=0; i<=likeButton.length-1; i++) {
+    likeButton[i].addEventListener("click", function() {
+        likeButton[i].classList.toggle("place__button_filled")
+        likeButton[i].classList.toggle("place__button_type_unfilled")
+    })
+}
