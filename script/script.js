@@ -10,6 +10,10 @@ let addPlace = document.querySelector(".popup__add-place");
 
 let addPlaceExitButton = document.querySelector(".popup__exit_add-place");
 
+let imagePopup = document.querySelector(".popup__image");
+
+let placeImage = document.querySelectorAll(".place__image");
+
 let profileName = document.querySelector(".profile__name");
 
 let profileDescriptor = document.querySelector(".profile__descriptor");
@@ -50,6 +54,10 @@ function profileFormSubmit(evt) {
     closeEditBox();
 }
 
+function openImagePopup() {
+    imagePopup.classList.add("popup_visible");
+}
+
 editProfileButton.addEventListener("click", openEditBox);
 
 editProfileExitButton.addEventListener("click", closeEditBox);
@@ -60,6 +68,11 @@ addPlaceButton.addEventListener("click", openAddPlace);
 
 addPlaceExitButton.addEventListener("click", closeAddPlace);
 
+for (let i=0; i<=placeImage.length-1; i++) {
+    placeImage[i].addEventListener("click", function() {
+        imagePopup.classList.add("popup_visible");
+    })
+}
 
 for (let i=0; i<=likeButton.length-1; i++) {
     likeButton[i].addEventListener("click", function() {
