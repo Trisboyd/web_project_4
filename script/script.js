@@ -2,9 +2,13 @@ let like_button = document.querySelectorAll(".place__like-button");
 
 let editProfileButton = document.querySelector(".profile__edit-button");
 
-let editExitButton = document.querySelector(".popup__exit")
+let editProfileExitButton = document.querySelector(".popup__exit_edit-profile");
 
-let profileEditor = document.querySelector(".popup");
+let profileEditor = document.querySelector(".popup__profile-edit");
+
+let addPlace = document.querySelector(".popup__add-place");
+
+let addPlaceExitButton = document.querySelector(".popup__exit_add-place");
 
 let profileName = document.querySelector(".profile__name");
 
@@ -12,13 +16,13 @@ let profileDescriptor = document.querySelector(".profile__descriptor");
 
 let editName = document.querySelector(".edit-box__text_type_name");
 
-let editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
+let addPlaceButton = document.querySelector(".profile__add-place-button");
 
-let saveButton = document.getElementById("save-button");
+let editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
 let likeButton = document.querySelectorAll(".place__button");
 
-let form = document.querySelector(".edit-box");
+let formProfile = document.querySelector(".edit-box");
 
 
 function openEditBox() {
@@ -27,11 +31,19 @@ function openEditBox() {
     editDescriptor.value = profileDescriptor.textContent;
 }
 
+function openAddPlace() {
+    addPlace.classList.add("popup_visible");
+}
+
+function closeAddPlace() {
+    addPlace.classList.remove("popup_visible");
+}
+
 function closeEditBox() {
     profileEditor.classList.remove("popup_visible");
 }
 
-function handleFormSubmit(evt) {
+function profileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editName.value;
     profileDescriptor.textContent = editDescriptor.value;
@@ -40,9 +52,13 @@ function handleFormSubmit(evt) {
 
 editProfileButton.addEventListener("click", openEditBox);
 
-editExitButton.addEventListener("click", closeEditBox);
+editProfileExitButton.addEventListener("click", closeEditBox);
 
-form.addEventListener("submit", handleFormSubmit);
+formProfile.addEventListener("submit", profileFormSubmit);
+
+addPlaceButton.addEventListener("click", openAddPlace);
+
+addPlaceExitButton.addEventListener("click", closeAddPlace);
 
 
 for (let i=0; i<=likeButton.length-1; i++) {

@@ -28,6 +28,7 @@
 
         <section class="places">
             <article class="place">
+                <button class="place__trash" type="button" aria-label="trash-button" src="images/Trash.svg"></button>
                 <img class="place__image" src="images/gulf-of-california.jpg" alt="california coastline">
                 <div class="place__info">
                     <h2 class="place__name">Gulf of California</h2>
@@ -77,9 +78,9 @@
         <p class="footer__text">&copy; 2021 Around The U.S.</p>
     </footer>
 
-    <section class="popup">
+    <section class="popup popup__profile-edit">
         <div class="popup__container">
-            <button class="popup__exit" aria-label="exit"></button>
+            <button class="popup__exit popup__exit_edit-profile" aria-label="exit"></button>
             <form class="edit-box" name="edit-box">
                 <h3 class="edit-box__title">Edit profile</h3>
                 <input type="text" value="Francisco Coronado" id="profile-name"
@@ -88,6 +89,21 @@
                     class="edit-box__text edit-box__text_type_descriptor" name="profile-name">
                 <button type="submit" id="save-button" class="edit-box__submit" name="edit-box-submit"
                     aria-label="submit">Save</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup popup__add-place">
+        <div class="popup__container">
+            <button class="popup__exit popup__exit_add-place" aria-label="exit"></button>
+            <form class="edit-box" name="edit-box">
+                <h3 class="edit-box__title">New place</h3>
+                <input type="text" placeholder="Title" id="place-title"
+                    class="edit-box__text edit-box__text_type_name" name="place-title">
+                <input type="text" placeholder="Image link" id="image-link"
+                    class="edit-box__text edit-box__text_type_descriptor" name="image-link">
+                <button type="submit" id="create-button" class="edit-box__submit" name="add-place-submit"
+                    aria-label="submit">Create</button>
             </form>
         </div>
     </section>
