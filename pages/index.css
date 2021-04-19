@@ -21,4 +21,6 @@
 /* this is directly imported in order to use css precedence to open the display of the popup */
 @import url(../blocks/popup/_visible/popup_visible.css);
 
-@import url(./_filled/place__button_filled.css);
+@import url(../blocks/place/__button/_type/place__button_type_unfilled.css);
+
+@import url(../blocks/place/__button/_type/place__button_type_filled.css);
