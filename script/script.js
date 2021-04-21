@@ -71,29 +71,34 @@ const places = document.querySelector(".places");
 
 // define variables and put info into placeCards
 
-function writePlace(placeCards) {
-    placeCards.forEach(card => {
-        const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
-        const placeElement = placeTemplate.cloneNode(true);
-        const placeImage = placeElement.querySelector(".place__image");
-        const placeName = placeElement.querySelector(".place__name");
-        const placeButton = placeElement.querySelector(".place__button");
-        const trashButton = placeElement.querySelector(".place__trash");
-        placeImage.style.background = `url(${card.link})`;
-        placeName.textContent = card.name;
-        likeButtonChange(placeButton);
-        removePlace(trashButton, placeElement);
-        imageExpand(placeImage, placeName);
-        imageClose(imagePopupExit);
-    })
+function writePlace(name, link) {
+     const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
+     const placeElement = placeTemplate.cloneNode(true);
+     const placeImage = placeElement.querySelector(".place__image");
+     const placeName = placeElement.querySelector(".place__name");
+     const placeButton = placeElement.querySelector(".place__button");
+     const trashButton = placeElement.querySelector(".place__trash");
+     placeImage.style.background = `url(${link})`;
+     placeName.textContent = name;
+     likeButtonChange(placeButton);
+     removePlace(trashButton);
+     imageExpand(placeImage, placeName);
+     imageClose();
+     return placeElement;
 }
 
 // Render placeCards
 
-function renderPlaces(placeCards, container) {
-    writePlace(placeCards);
-    container.append(placeCards);
+function renderPlaces(name, link) {
+    const writtenPlace = writePlace(name, link);
+    places.append(writtenPlace);
 }
+
+// Call the Render Function
+
+initialCards.forEach(card => {
+    renderPlaces(card.name, card.link);
+})
 
 // Toggle Like Buttons
 
@@ -106,9 +111,9 @@ function likeButtonChange(placeButton) {
 
 // Remove placeCards with trash button 
 
-function removePlace(trashButton, placeElement) {
-    trashButton.addEventListener("click", function(evt) {
-        evt.target.closest(placeElement).remove();
+function removePlace(trashButton) {
+    trashButton.addEventListener("click", function() {
+        trashButton.parentElement.remove();
     });
 }
 
@@ -124,8 +129,8 @@ function imageExpand(placeImage, placeName) {
 
 // Close Image Popup
 
-function imageClose(exitButton) {
-    exitButton.addEventListener("click", function() {
+function imageClose() {
+    imagePopupExit.addEventListener("click", function() {
         changePopup(imagePopup);
     });
 }
@@ -137,8 +142,7 @@ function newPlaceDetails (placeName, placeLink) {
         name: placeName,
         link: placeLink
     };
-    const newPlaceArray = [newPlace]
-    return newPlaceArray;
+    renderPlaces(newPlace.name, newPlace.link);
 }
 
 // Render New Card
@@ -148,13 +152,8 @@ function addNewPlace(evt) {
     const newPlaceName = addPlace.querySelector("#place-title").value;
     const newPlaceImage = addPlace.querySelector("#image-link").value;
     newPlaceDetails(newPlaceName, newPlaceImage);
-    renderPlaces();
     changePopup(addPlace);
 }
-
-// Call the Render Function
-
-renderPlaces(initialCards, places);
 
 
 formAddPlace.addEventListener("submit", addNewPlace);
