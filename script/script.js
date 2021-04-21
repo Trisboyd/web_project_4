@@ -78,7 +78,8 @@ function writePlace(name, link) {
      const placeName = placeElement.querySelector(".place__name");
      const placeButton = placeElement.querySelector(".place__button");
      const trashButton = placeElement.querySelector(".place__trash");
-     placeImage.style.background = `url(${link})`;
+     placeImage.src = link;
+    //  placeImage.style.background = `url(${link})`;
      placeName.textContent = name;
      likeButtonChange(placeButton);
      removePlace(trashButton);
@@ -121,7 +122,8 @@ function removePlace(trashButton) {
 
 function imageExpand(placeImage, placeName) {
     placeImage.addEventListener("click", function(evt) {
-        document.querySelector(".popup__image_pic").style.background = `url(${evt.target.style.background})`;
+        document.querySelector(".popup__image_pic").src = placeImage.src;
+        // document.querySelector(".popup__image_pic").style.background = `url(${evt.target.style.background})`;
         document.querySelector(".popup__image_title").textContent = `${placeName.textContent}`;
         changePopup(imagePopup);
     });
@@ -131,7 +133,7 @@ function imageExpand(placeImage, placeName) {
 
 function imageClose() {
     imagePopupExit.addEventListener("click", function() {
-        changePopup(imagePopup);
+        imagePopup.classList.remove("popup_visible");
     });
 }
 
@@ -156,18 +158,12 @@ function addNewPlace(evt) {
 }
 
 
-formAddPlace.addEventListener("submit", addNewPlace);
-
-
-
-
-
-
-
-// Functions
+// General Popup Toggle
 function changePopup(popup) {
     popup.classList.toggle("popup_visible");
 }
+
+// Open Profile Editor with default information
 
 function openEditBox() {
     changePopup(profileEditor);
@@ -175,13 +171,7 @@ function openEditBox() {
     editDescriptor.value = profileDescriptor.textContent;
 }
 
-function closeEditBox() {
-    changePopup(profileEditor);
-}
-
-function changeAddPlaceVisibilty() {
-    changePopup(addPlace);
-}
+// Create New Profile Information
 
 function profileFormSubmit(evt) {
     evt.preventDefault();
@@ -190,9 +180,25 @@ function profileFormSubmit(evt) {
     changePopup(profileEditor);
 }
 
+// Close Profile Editor
+
+function closeEditBox() {
+    changePopup(profileEditor);
+}
+
+// Open New Place Popup
+
+function changeAddPlaceVisibilty() {
+    changePopup(addPlace);
+}
+
+// Open Image Popup
+
 function openImagePopup() {
     changePopup(imagePopup);
 }
+
+// Close Image Popup
 
 function closeImagePopup() {
     imagePopupExit.addEventListener("click", function() {
@@ -212,57 +218,5 @@ addPlaceButton.addEventListener("click", changeAddPlaceVisibilty);
 
 addPlaceExitButton.addEventListener("click", changeAddPlaceVisibilty);
 
-
-
-// const places = document.querySelector(".places");
-
-// function createPlace(places) {
-//     places.forEach(place => {
-//         const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
-//         const placeElement = placeTemplate.cloneNode(true);
-//         const placeImage = placeElement.querySelector(".place__image");
-//         const placeName = placeElement.querySelector(".place__name");
-//         const placeButton = placeElement.querySelector(".place__button")
-//         placeImage.style.background = `url(${place.link})`;
-//         placeName.textContent = place.name;
-//         likeButtonChange(placeButton);
-//         imageExpand(placeImage, placeName);
-//     })
-// }
-
-// function renderPlaces(places, container) {
-//     places.forEach(place => {
-//         createPlace(place);
-//         container.append(place);
-//     })
-// }
-
-// function imageExpand(placeImage, placeName) {
-//     placeImage.addEventListener("click", function (evt) {
-//         imagePopup.classList.add("popup_visible");
-//         const eventTarget = evt.target;
-//         imageExpandFill(eventTarget, placeName);
-//         closeImagePopup();
-//     });
-// }
-
-// function imageExpandFill(eventTarget, title) {
-//     const popupImagePic = document.querySelector(".popup__image_pic");
-//     const popupImageTitle = document.querySelector(".popup__image_title");
-//     popupImagePic.style.background = `url(${eventTarget.style.background})`;
-//     popupImageTitle.textContent = `${title.textContent}`;
-// }
-
-
-// function likeButtonChange(button) {
-//     button.addEventListener("click", function () {
-//         button.classList.toggle("place__button_type_unfilled")
-//         button.classList.toggle("place__button_type_filled")
-//     });
-// }
-
-
-
-// renderPlaces(initialCards, places);
-
+formAddPlace.addEventListener("submit", addNewPlace);
 

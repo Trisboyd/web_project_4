@@ -1,8 +1,8 @@
 .place__image {
     display: block;
     object-fit:initial;
-    min-width: 282px;
-    min-height: 282px;
+    width: 282px;
+    height: 282px;
     border-radius: 10px 10px 0px 0px;
     cursor: pointer;
 }
