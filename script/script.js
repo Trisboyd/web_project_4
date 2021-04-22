@@ -1,42 +1,42 @@
 // profile variables
-let editProfileButton = document.querySelector(".profile__edit-button");
+const editProfileButton = document.querySelector(".profile__edit-button");
 
-let editProfileExitButton = document.querySelector(".popup__exit_edit-profile");
+const editProfileExitButton = document.querySelector(".popup__exit_edit-profile");
 
-let profileEditor = document.querySelector(".popup__profile-edit");
+const profileEditor = document.querySelector(".popup__profile-edit");
 
-let profileName = document.querySelector(".profile__name");
+const profileName = document.querySelector(".profile__name");
 
-let profileDescriptor = document.querySelector(".profile__descriptor");
+const profileDescriptor = document.querySelector(".profile__descriptor");
 
-let editName = document.querySelector(".edit-box__text_type_name");
+const editName = document.querySelector(".edit-box__text_type_name");
 
-let formProfile = document.querySelector(".edit-box__profile");
+const formProfile = document.querySelector(".edit-box__profile");
 
-let editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
+const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
 // Add Place variables
-let addPlace = document.querySelector(".popup__add-place");
+const addPlace = document.querySelector(".popup__add-place");
 
-let addPlaceExitButton = document.querySelector(".popup__exit_add-place");
+const addPlaceExitButton = document.querySelector(".popup__exit_add-place");
 
-let addPlaceButton = document.querySelector(".profile__add-place-button");
+const addPlaceButton = document.querySelector(".profile__add-place-button");
 
-let addPlacename = document.querySelector("#place-title");
+const addPlacename = document.querySelector("#place-title");
 
-let addPlaceImage = document.querySelector("#image-link");
+const addPlaceImage = document.querySelector("#image-link");
 
-let formAddPlace = document.querySelector(".edit-box__place");
+const formAddPlace = document.querySelector(".edit-box__place");
 
 // Image Popup variables
-let imagePopup = document.querySelector(".popup__image");
+const imagePopup = document.querySelector(".popup__image");
 
-let imagePopupExit = document.querySelector(".popup__exit_image");
+const imagePopupExit = document.querySelector(".popup__exit_image");
 
 // Place variables
-let likeButton = document.querySelectorAll(".place__button");
+const likeButton = document.querySelectorAll(".place__button");
 
-let placeImage = document.querySelectorAll(".place__image");
+const placeImage = document.querySelectorAll(".place__image");
 
 
 // places setup

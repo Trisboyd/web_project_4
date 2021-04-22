@@ -8,16 +8,17 @@ https://trisboyd.github.io/web_project_4/
 
 ###Updates
 ---
-This particular project is scheduled for multiple small updates between the dates of 4-5-21 and 4-12-21.
+This particular project is scheduled for multiple small updates between the dates of 4-21-21 and 4-26-21.
 
 ###Description
 ---
 In the early 16th century the Spanish explorer and conquistador Francisco Coronado embarked on a legendary journey across the Southwestern
 United States.  His journey took him through many amazing geographical wonders which you can explore here in this interactive website.  Do
 you dislike European explorers?  Replace his name with yours (but keep the handsome picture).  You can also choose to like certain locations
-and ignore others.
+and ignore others and add other locations he may have visited on his journey or that you yourself would like to visit.  If you don't like a
+location, just trash it.
 
-All of these actions are available to you through basic javascript concepts such as defining variables, adding event listeners, and loops.
+All of these actions are available to you through basic javascript concepts such as eventListeners, forEach functions, and nested functions.
 
 ###Deployment
 ---
