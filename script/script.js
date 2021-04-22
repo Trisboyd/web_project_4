@@ -3,7 +3,7 @@ const editProfileButton = document.querySelector(".profile__edit-button");
 
 const editProfileExitButton = document.querySelector(".popup__exit_edit-profile");
 
-const profileEditor = document.querySelector(".popup__profile-edit");
+const profileEditor = document.querySelector(".popup_profile-edit");
 
 const profileName = document.querySelector(".profile__name");
 
@@ -11,12 +11,12 @@ const profileDescriptor = document.querySelector(".profile__descriptor");
 
 const editName = document.querySelector(".edit-box__text_type_name");
 
-const formProfile = document.querySelector(".edit-box__profile");
+const formProfile = document.querySelector(".edit-box_profile");
 
 const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
 // Add Place variables
-const addPlace = document.querySelector(".popup__add-place");
+const addPlace = document.querySelector(".popup_add-place");
 
 const addPlaceExitButton = document.querySelector(".popup__exit_add-place");
 
@@ -26,10 +26,10 @@ const addPlacename = document.querySelector("#place-title");
 
 const addPlaceImage = document.querySelector("#image-link");
 
-const formAddPlace = document.querySelector(".edit-box__place");
+const formAddPlace = document.querySelector(".edit-box_place");
 
 // Image Popup variables
-const imagePopup = document.querySelector(".popup__image");
+const imagePopup = document.querySelector(".popup_image");
 
 const imagePopupExit = document.querySelector(".popup__exit_image");
 
@@ -122,9 +122,9 @@ function removePlace(trashButton) {
 
 function imageExpand(placeImage, placeName) {
     placeImage.addEventListener("click", function(evt) {
-        document.querySelector(".popup__image_pic").src = placeImage.src;
-        document.querySelector(".popup__image_pic").alt = `${placeName.textContent}`;
-        document.querySelector(".popup__image_title").textContent = `${placeName.textContent}`;
+        document.querySelector(".popup__image-container_pic").src = placeImage.src;
+        document.querySelector(".popup__image-container_pic").alt = `${placeName.textContent}`;
+        document.querySelector(".popup__image-container_title").textContent = `${placeName.textContent}`;
         changePopup(imagePopup);
     });
 }
