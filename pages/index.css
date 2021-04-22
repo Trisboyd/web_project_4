@@ -10,6 +10,8 @@
 
 @import url(../blocks/popup/popup.css);
 
+@import url(../blocks/popup-image-container/popup-image-container.css);
+
 @import url(../blocks/edit-box/edit-box.css);
 
 @import url(../blocks/places/places.css);

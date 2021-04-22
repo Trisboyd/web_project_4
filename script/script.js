@@ -122,9 +122,9 @@ function removePlace(trashButton) {
 
 function imageExpand(placeImage, placeName) {
     placeImage.addEventListener("click", function(evt) {
-        document.querySelector(".popup__image-container_pic").src = placeImage.src;
-        document.querySelector(".popup__image-container_pic").alt = `${placeName.textContent}`;
-        document.querySelector(".popup__image-container_title").textContent = `${placeName.textContent}`;
+        document.querySelector(".popup-image-container__pic").src = placeImage.src;
+        document.querySelector(".popup-image-container__pic").alt = `${placeName.textContent}`;
+        document.querySelector(".popup-image-container__title").textContent = `${placeName.textContent}`;
         changePopup(imagePopup);
     });
 }
