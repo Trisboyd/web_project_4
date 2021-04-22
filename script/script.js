@@ -79,7 +79,7 @@ function writePlace(name, link) {
      const placeButton = placeElement.querySelector(".place__button");
      const trashButton = placeElement.querySelector(".place__trash");
      placeImage.src = link;
-    //  placeImage.style.background = `url(${link})`;
+     placeImage.alt = name;
      placeName.textContent = name;
      likeButtonChange(placeButton);
      removePlace(trashButton);
@@ -123,7 +123,7 @@ function removePlace(trashButton) {
 function imageExpand(placeImage, placeName) {
     placeImage.addEventListener("click", function(evt) {
         document.querySelector(".popup__image_pic").src = placeImage.src;
-        // document.querySelector(".popup__image_pic").style.background = `url(${evt.target.style.background})`;
+        document.querySelector(".popup__image_pic").alt = `${placeName.textContent}`;
         document.querySelector(".popup__image_title").textContent = `${placeName.textContent}`;
         changePopup(imagePopup);
     });
