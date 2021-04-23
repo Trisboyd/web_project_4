@@ -22,7 +22,7 @@ const addPlaceExitButton = document.querySelector(".popup__exit_add-place");
 
 const addPlaceButton = document.querySelector(".profile__add-place-button");
 
-const addPlacename = document.querySelector("#place-title");
+const addPlaceName = document.querySelector("#place-title");
 
 const addPlaceImage = document.querySelector("#image-link");
 
@@ -32,6 +32,10 @@ const formAddPlace = document.querySelector(".edit-box_place");
 const imagePopup = document.querySelector(".popup_image");
 
 const imagePopupExit = document.querySelector(".popup__exit_image");
+
+const imagePopupPic = document.querySelector(".popup-image-container__pic");
+
+const imagePopupName = document.querySelector(".popup-image-container__title");
 
 // Place variables
 const likeButton = document.querySelectorAll(".place__button");
@@ -81,9 +85,9 @@ function writePlace(name, link) {
      placeImage.src = link;
      placeImage.alt = name;
      placeName.textContent = name;
-     likeButtonChange(placeButton);
+     setLikeButtonListener(placeButton);
      removePlace(trashButton);
-     imageExpand(placeImage, placeName);
+     expandImage(placeImage, placeName);
      imageClose();
      return placeElement;
 }
@@ -92,7 +96,7 @@ function writePlace(name, link) {
 
 function renderPlaces(name, link) {
     const writtenPlace = writePlace(name, link);
-    places.append(writtenPlace);
+    places.prepend(writtenPlace);
 }
 
 // Call the Render Function
@@ -103,9 +107,8 @@ initialCards.forEach(card => {
 
 // Toggle Like Buttons
 
-function likeButtonChange(placeButton) {
+function setLikeButtonListener(placeButton) {
     placeButton.addEventListener("click", function () {
-        placeButton.classList.toggle("place__button_type_unfilled")
         placeButton.classList.toggle("place__button_type_filled")
     });
 }
@@ -120,11 +123,11 @@ function removePlace(trashButton) {
 
 // Open Image Popup
 
-function imageExpand(placeImage, placeName) {
+function expandImage(placeImage, placeName) {
     placeImage.addEventListener("click", function(evt) {
-        document.querySelector(".popup-image-container__pic").src = placeImage.src;
-        document.querySelector(".popup-image-container__pic").alt = `${placeName.textContent}`;
-        document.querySelector(".popup-image-container__title").textContent = `${placeName.textContent}`;
+        imagePopupPic.src = placeImage.src;
+        imagePopupPic.alt = `${placeName.textContent}`;
+        imagePopupName.textContent = `${placeName.textContent}`;
         changePopup(imagePopup);
     });
 }
@@ -139,7 +142,7 @@ function imageClose() {
 
 // New Card Details
 
-function newPlaceDetails (placeName, placeLink) {
+function addNewPlaceDetails (placeName, placeLink) {
     const newPlace = {
         name: placeName,
         link: placeLink
@@ -151,9 +154,9 @@ function newPlaceDetails (placeName, placeLink) {
 
 function addNewPlace(evt) {
     evt.preventDefault();
-    const newPlaceName = addPlace.querySelector("#place-title").value;
-    const newPlaceImage = addPlace.querySelector("#image-link").value;
-    newPlaceDetails(newPlaceName, newPlaceImage);
+    const newPlaceName = addPlaceName.value;
+    const newPlaceImage = addPlaceImage.value;
+    addNewPlaceDetails(newPlaceName, newPlaceImage);
     changePopup(addPlace);
 }
 
