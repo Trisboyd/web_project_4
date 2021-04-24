@@ -88,9 +88,12 @@ function writePlace(name, link) {
      setLikeButtonListener(placeButton);
      removePlace(trashButton);
      expandImage(placeImage, placeName);
-     imageClose();
      return placeElement;
 }
+
+// call close function on image popup exit button
+
+closeImagePopup();
 
 // Render placeCards
 
@@ -128,15 +131,7 @@ function expandImage(placeImage, placeName) {
         imagePopupPic.src = placeImage.src;
         imagePopupPic.alt = `${placeName.textContent}`;
         imagePopupName.textContent = `${placeName.textContent}`;
-        changePopup(imagePopup);
-    });
-}
-
-// Close Image Popup
-
-function imageClose() {
-    imagePopupExit.addEventListener("click", function() {
-        imagePopup.classList.remove("popup_visible");
+        togglePopup(imagePopup);
     });
 }
 
@@ -157,19 +152,27 @@ function addNewPlace(evt) {
     const newPlaceName = addPlaceName.value;
     const newPlaceImage = addPlaceImage.value;
     addNewPlaceDetails(newPlaceName, newPlaceImage);
-    changePopup(addPlace);
+    clearNewPlaceDetails();
+    togglePopup(addPlace);
 }
 
+// clear add new place details after submitting new place
+
+function clearNewPlaceDetails() {
+    addPlaceName.value = "";
+    addPlaceImage.value = "";
+}
 
 // General Popup Toggle
-function changePopup(popup) {
+
+function togglePopup(popup) {
     popup.classList.toggle("popup_visible");
 }
 
 // Open Profile Editor with default information
 
 function openEditBox() {
-    changePopup(profileEditor);
+    togglePopup(profileEditor);
     editName.value = profileName.textContent;
     editDescriptor.value = profileDescriptor.textContent;
 }
@@ -180,32 +183,32 @@ function profileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editName.value;
     profileDescriptor.textContent = editDescriptor.value;
-    changePopup(profileEditor);
+    togglePopup(profileEditor);
 }
 
 // Close Profile Editor
 
 function closeEditBox() {
-    changePopup(profileEditor);
+    togglePopup(profileEditor);
 }
 
 // Open New Place Popup
 
 function changeAddPlaceVisibilty() {
-    changePopup(addPlace);
+    togglePopup(addPlace);
 }
 
 // Open Image Popup
 
 function openImagePopup() {
-    changePopup(imagePopup);
+    togglePopup(imagePopup);
 }
 
 // Close Image Popup
 
 function closeImagePopup() {
     imagePopupExit.addEventListener("click", function() {
-        changePopup(imagePopup);
+        togglePopup(imagePopup);
     });
 }
 
