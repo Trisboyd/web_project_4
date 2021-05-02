@@ -1,3 +1,6 @@
+// popup variable
+const popupModal = document.querySelector(".popup");
+
 // profile variables
 const editProfileButton = document.querySelector(".profile__edit-button");
 
@@ -14,6 +17,8 @@ const editName = document.querySelector(".edit-box__text_type_name");
 const formProfile = document.querySelector(".edit-box_profile");
 
 const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
+
+const formInput = document.querySelectorAll(".edit-box__text");
 
 // Add Place variables
 const addPlace = document.querySelector(".popup_add-place");
@@ -226,3 +231,56 @@ addPlaceExitButton.addEventListener("click", changeAddPlaceVisibilty);
 
 formAddPlace.addEventListener("submit", addNewPlace);
 
+popupModal.addEventListener("click", closeAnyPopup);
+
+
+// VALIDATION
+
+// const nameInput = document.querySelector("#profile-name");
+// const error = form.querySelector(`#${nameInput.id}-error`);
+// console.log(nameInput);
+// console.log(error);
+
+const showError = (formElement, inputElement, errorMessage) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.add("edit-box__text-error");
+    errorElement.textContent = errorMessage;
+    // add class to make errorElement appear
+}
+
+const hideError = (formElement, inputElement) => {
+    const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
+    inputElement.classList.remove("edit-box__text-error");
+    errorElement.textContent = "";
+    // remove class to make errorElement disappear
+}
+
+const checkFormValidity = (formElement, inputElement) => {
+    if (!inputElement.validity.valid) {
+        showError(formElement, inputElement, inputElement.validationMessage);
+    }
+    else {
+        hideError(formElement, inputElement);
+    }
+}
+
+const setFormEventListeners = (formElement) => {
+    const inputList = Array.from(formElement.querySelectorAll(".edit-box__text"));
+    inputList.forEach(inputElement => {
+        inputElement.addEventListener("input", function(evt) {
+            checkFormValidity(formElement, inputElement);
+        })
+    })
+}
+
+function enableFormValidation() {
+    const formList = Array.from(document.querySelectorAll(".edit-box"))
+    formList.forEach(formElement => {
+        formElement.addEventListener("submit", function(evt) {
+            evt.preventDefault();
+        })
+        setFormEventListeners(formElement);
+    })
+}
+
+enableFormValidation();
