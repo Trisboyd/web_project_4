@@ -4,6 +4,7 @@
 @import url(./__text/_type/edit-box__text_type_descriptor.css);
 @import url(./__text/_type/edit-box__text_type_name.css);
 @import url(./__text-error/edit-box__text-error.css);
+@import url(./__submit/_inactive/edit-box__submit_inactive.css);
 
 
 .edit-box {

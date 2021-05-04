@@ -1,5 +1,43 @@
 // popup variable
-const popupModal = document.querySelector(".popup");
+// const popupModal = document.querySelector(".popup");
+
+const escKey = 27;
+
+const isEscEvent = (evt, action) => {
+    const popupActive = document.querySelector(".popup_visible");
+
+    if (evt.which === escKey) {
+        action(popupActive);
+    }
+}
+
+const handleEscUp = evt => {
+    evt.preventDefault();
+    isEscEvent(evt, closePopup);
+}
+
+const openPopup = popupModal => {
+    popupModal.classList.add("popup_visible");
+    document.addEventListener("keyup", handleEscUp);
+}
+
+const closePopup = popupModal => {
+    popupModal.classList.remove("popup_visible");
+    document.removeEventListener("keyup", handleEscUp);
+}
+
+
+// function closePopupOutsideClick() {
+//     const popupActive = document.querySelector("popup_visible");
+//     document.addEventListener("click", function (evt) {
+//         if (!evt.target.closest(".popup__container") ||
+//             !evt.target.closest(".popup-image-container")) {
+//             closePopup(popupActive);
+//         }
+// })
+// }
+
+// closePopupOutsideClick();
 
 // profile variables
 const editProfileButton = document.querySelector(".profile__edit-button");
@@ -81,19 +119,19 @@ const places = document.querySelector(".places");
 // define variables and put info into placeCards
 
 function writePlace(name, link) {
-     const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
-     const placeElement = placeTemplate.cloneNode(true);
-     const placeImage = placeElement.querySelector(".place__image");
-     const placeName = placeElement.querySelector(".place__name");
-     const placeButton = placeElement.querySelector(".place__button");
-     const trashButton = placeElement.querySelector(".place__trash");
-     placeImage.src = link;
-     placeImage.alt = name;
-     placeName.textContent = name;
-     setLikeButtonListener(placeButton);
-     removePlace(trashButton);
-     expandImage(placeImage, placeName);
-     return placeElement;
+    const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
+    const placeElement = placeTemplate.cloneNode(true);
+    const placeImage = placeElement.querySelector(".place__image");
+    const placeName = placeElement.querySelector(".place__name");
+    const placeButton = placeElement.querySelector(".place__button");
+    const trashButton = placeElement.querySelector(".place__trash");
+    placeImage.src = link;
+    placeImage.alt = name;
+    placeName.textContent = name;
+    setLikeButtonListener(placeButton);
+    removePlace(trashButton);
+    expandImage(placeImage, placeName);
+    return placeElement;
 }
 
 // call close function on image popup exit button
@@ -124,7 +162,7 @@ function setLikeButtonListener(placeButton) {
 // Remove placeCards with trash button 
 
 function removePlace(trashButton) {
-    trashButton.addEventListener("click", function() {
+    trashButton.addEventListener("click", function () {
         trashButton.parentElement.remove();
     });
 }
@@ -132,17 +170,17 @@ function removePlace(trashButton) {
 // Open Image Popup
 
 function expandImage(placeImage, placeName) {
-    placeImage.addEventListener("click", function(evt) {
+    placeImage.addEventListener("click", function (evt) {
         imagePopupPic.src = placeImage.src;
         imagePopupPic.alt = `${placeName.textContent}`;
         imagePopupName.textContent = `${placeName.textContent}`;
-        togglePopup(imagePopup);
+        openPopup(imagePopup);
     });
 }
 
 // New Card Details
 
-function addNewPlaceDetails (placeName, placeLink) {
+function addNewPlaceDetails(placeName, placeLink) {
     const newPlace = {
         name: placeName,
         link: placeLink
@@ -158,7 +196,7 @@ function addNewPlace(evt) {
     const newPlaceImage = addPlaceImage.value;
     addNewPlaceDetails(newPlaceName, newPlaceImage);
     clearNewPlaceDetails();
-    togglePopup(addPlace);
+    closePopup(addPlace);
 }
 
 // clear add new place details after submitting new place
@@ -168,16 +206,10 @@ function clearNewPlaceDetails() {
     addPlaceImage.value = "";
 }
 
-// General Popup Toggle
-
-function togglePopup(popup) {
-    popup.classList.toggle("popup_visible");
-}
-
 // Open Profile Editor with default information
 
 function openEditBox() {
-    togglePopup(profileEditor);
+    openPopup(profileEditor);
     editName.value = profileName.textContent;
     editDescriptor.value = profileDescriptor.textContent;
 }
@@ -188,32 +220,36 @@ function profileFormSubmit(evt) {
     evt.preventDefault();
     profileName.textContent = editName.value;
     profileDescriptor.textContent = editDescriptor.value;
-    togglePopup(profileEditor);
+    closePopup(profileEditor);
 }
 
 // Close Profile Editor
 
 function closeEditBox() {
-    togglePopup(profileEditor);
+    closePopup(profileEditor);
 }
 
 // Open New Place Popup
 
-function changeAddPlaceVisibilty() {
-    togglePopup(addPlace);
+function openAddPlace() {
+    openPopup(addPlace);
+}
+
+function closeAddPlace() {
+    closePopup(addPlace);
 }
 
 // Open Image Popup
 
 function openImagePopup() {
-    togglePopup(imagePopup);
+    openPopup(imagePopup);
 }
 
 // Close Image Popup
 
 function closeImagePopup() {
-    imagePopupExit.addEventListener("click", function() {
-        togglePopup(imagePopup);
+    imagePopupExit.addEventListener("click", function () {
+        closePopup(imagePopup);
     });
 }
 
@@ -225,21 +261,15 @@ editProfileExitButton.addEventListener("click", closeEditBox);
 
 formProfile.addEventListener("submit", profileFormSubmit);
 
-addPlaceButton.addEventListener("click", changeAddPlaceVisibilty);
+addPlaceButton.addEventListener("click", openAddPlace);
 
-addPlaceExitButton.addEventListener("click", changeAddPlaceVisibilty);
+addPlaceExitButton.addEventListener("click", closeAddPlace);
 
 formAddPlace.addEventListener("submit", addNewPlace);
-
-popupModal.addEventListener("click", closeAnyPopup);
 
 
 // VALIDATION
 
-// const nameInput = document.querySelector("#profile-name");
-// const error = form.querySelector(`#${nameInput.id}-error`);
-// console.log(nameInput);
-// console.log(error);
 
 const showError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
@@ -264,11 +294,28 @@ const checkFormValidity = (formElement, inputElement) => {
     }
 }
 
+const hasInvalidInput = (inputList) => {
+    return inputList.some((inputElement) => {
+        return !inputElement.validity.valid;
+})
+}
+
+const toggleSubmitButton = (inputList, buttonElement) => {
+    if (hasInvalidInput(inputList)) {
+        buttonElement.classList.add("edit-box__submit_inactive");
+    } else {
+        buttonElement.classList.remove("edit-box__submit_inactive");
+    }
+};
+
 const setFormEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(".edit-box__text"));
+    const buttonElement = formElement.querySelector(".edit-box__submit");
+    toggleSubmitButton(inputList, buttonElement);
     inputList.forEach(inputElement => {
-        inputElement.addEventListener("input", function(evt) {
+        inputElement.addEventListener("input", function (evt) {
             checkFormValidity(formElement, inputElement);
+            toggleSubmitButton(inputList, buttonElement);
         })
     })
 }
@@ -276,7 +323,7 @@ const setFormEventListeners = (formElement) => {
 function enableFormValidation() {
     const formList = Array.from(document.querySelectorAll(".edit-box"))
     formList.forEach(formElement => {
-        formElement.addEventListener("submit", function(evt) {
+        formElement.addEventListener("submit", function (evt) {
             evt.preventDefault();
         })
         setFormEventListeners(formElement);
