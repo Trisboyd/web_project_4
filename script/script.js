@@ -1,44 +1,3 @@
-// popup variable
-// const popupModal = document.querySelector(".popup");
-
-const escKey = 27;
-
-const isEscEvent = (evt, action) => {
-    const popupActive = document.querySelector(".popup_visible");
-
-    if (evt.which === escKey) {
-        action(popupActive);
-    }
-}
-
-const handleEscUp = evt => {
-    evt.preventDefault();
-    isEscEvent(evt, closePopup);
-}
-
-const openPopup = popupModal => {
-    popupModal.classList.add("popup_visible");
-    document.addEventListener("keyup", handleEscUp);
-}
-
-const closePopup = popupModal => {
-    popupModal.classList.remove("popup_visible");
-    document.removeEventListener("keyup", handleEscUp);
-}
-
-
-// function closePopupOutsideClick() {
-//     const popupActive = document.querySelector("popup_visible");
-//     document.addEventListener("click", function (evt) {
-//         if (!evt.target.closest(".popup__container") ||
-//             !evt.target.closest(".popup-image-container")) {
-//             closePopup(popupActive);
-//         }
-// })
-// }
-
-// closePopupOutsideClick();
-
 // profile variables
 const editProfileButton = document.querySelector(".profile__edit-button");
 
@@ -58,6 +17,8 @@ const editDescriptor = document.querySelector(".edit-box__text_type_descriptor")
 
 const formInput = document.querySelectorAll(".edit-box__text");
 
+const profileSubmit = document.querySelector("#profile-submit");
+
 // Add Place variables
 const addPlace = document.querySelector(".popup_add-place");
 
@@ -70,6 +31,8 @@ const addPlaceName = document.querySelector("#place-title");
 const addPlaceImage = document.querySelector("#image-link");
 
 const formAddPlace = document.querySelector(".edit-box_place");
+
+const addPlaceSubmit = document.querySelector("#add-place-submit");
 
 // Image Popup variables
 const imagePopup = document.querySelector(".popup_image");
@@ -233,6 +196,8 @@ function closeEditBox() {
 
 function openAddPlace() {
     openPopup(addPlace);
+    addPlaceSubmit.disabled = true;
+    addPlaceSubmit.classList.add("edit-box__submit_inactive");
 }
 
 function closeAddPlace() {
@@ -253,6 +218,40 @@ function closeImagePopup() {
     });
 }
 
+// Define ESC key and allow pressing ESC key to close modal window
+const escKey = 27;
+
+const isEscEvent = (evt, action) => {
+    const popupActive = document.querySelector(".popup_visible");
+
+    if (evt.which === escKey) {
+        action(popupActive);
+    }
+}
+
+const handleEscUp = evt => {
+    evt.preventDefault();
+    isEscEvent(evt, closePopup);
+}
+
+const openPopup = popupModal => {
+    popupModal.classList.add("popup_visible");
+    document.addEventListener("keyup", handleEscUp);
+}
+
+const closePopup = popupModal => {
+    popupModal.classList.remove("popup_visible");
+    document.removeEventListener("keyup", handleEscUp);
+}
+
+// Allows clicks outside the modal window to close the modal window
+document.addEventListener("click", function(evt) {
+    const popupActive = document.querySelector(".popup_visible");
+    const targetElement = evt.target;
+    if (targetElement === popupActive) {
+        closePopup(popupActive);
+    }
+})
 
 // Event Listeners
 editProfileButton.addEventListener("click", openEditBox);
@@ -270,21 +269,19 @@ formAddPlace.addEventListener("submit", addNewPlace);
 
 // VALIDATION
 
-
+// Enables validation message to appear
 const showError = (formElement, inputElement, errorMessage) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.add("edit-box__text-error");
     errorElement.textContent = errorMessage;
-    // add class to make errorElement appear
 }
 
+// Hides validation message
 const hideError = (formElement, inputElement) => {
     const errorElement = formElement.querySelector(`#${inputElement.id}-error`);
-    inputElement.classList.remove("edit-box__text-error");
     errorElement.textContent = "";
-    // remove class to make errorElement disappear
 }
 
+// Checks whether forms passes validation and applies messages
 const checkFormValidity = (formElement, inputElement) => {
     if (!inputElement.validity.valid) {
         showError(formElement, inputElement, inputElement.validationMessage);
@@ -294,32 +291,52 @@ const checkFormValidity = (formElement, inputElement) => {
     }
 }
 
+// Checks inputs for valid input
 const hasInvalidInput = (inputList) => {
     return inputList.some((inputElement) => {
         return !inputElement.validity.valid;
 })
 }
 
-const toggleSubmitButton = (inputList, buttonElement) => {
+// Removes submit function and applies new styles if forms fail validation
+const toggleSubmitButton = (inputList, formElement, buttonElement) => {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add("edit-box__submit_inactive");
-    } else {
+        formElement.removeEventListener("submit", profileFormSubmit)
+        formElement.removeEventListener("submit", addNewPlace);
+        profileSubmit.disabled = true;
+        addPlaceSubmit.disabled = true;
+    } 
+    else {
         buttonElement.classList.remove("edit-box__submit_inactive");
+        checkFormType(formElement);
+        profileSubmit.disabled = false;
+        addPlaceSubmit.disabled = false;
     }
 };
 
+// Checks which type of form in order to add submit functions back to proper forms
+const checkFormType = formElement => {
+    if (formElement.classList.contains("edit-box_profile")) {
+        formElement.addEventListener("submit", profileFormSubmit);
+    }
+    else {formElement.addEventListener("submit", addNewPlace)}
+}
+
+// Adds event listeners to all forms
 const setFormEventListeners = (formElement) => {
     const inputList = Array.from(formElement.querySelectorAll(".edit-box__text"));
     const buttonElement = formElement.querySelector(".edit-box__submit");
-    toggleSubmitButton(inputList, buttonElement);
+    toggleSubmitButton(inputList, formElement, buttonElement);
     inputList.forEach(inputElement => {
         inputElement.addEventListener("input", function (evt) {
             checkFormValidity(formElement, inputElement);
-            toggleSubmitButton(inputList, buttonElement);
+            toggleSubmitButton(inputList, formElement, buttonElement);
         })
     })
 }
 
+// Applies all validation styles and functions to forms
 function enableFormValidation() {
     const formList = Array.from(document.querySelectorAll(".edit-box"))
     formList.forEach(formElement => {
@@ -331,3 +348,12 @@ function enableFormValidation() {
 }
 
 enableFormValidation();
+
+const settings = {
+    formSelector: ".edit-box",
+    inputSelector: ".edit-box__text",
+    submitButtonSelector: ".edit-box__submit",
+    inactiveButtonClass: ".edit-box__submit_inactive",
+    inputErrorClass: ".edit-box__text_type_error",
+    errorClass: ".edit-box__error_visible"
+  }; 
