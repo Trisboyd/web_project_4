@@ -33,26 +33,13 @@ const hasInvalidInput = (inputList) => {
 const toggleSubmitButton = (inputList, formElement, buttonElement) => {
     if (hasInvalidInput(inputList)) {
         buttonElement.classList.add(settings.inactiveButtonClass);
-        formElement.removeEventListener("submit", profileFormSubmit)
-        formElement.removeEventListener("submit", addNewPlace);
-        profileSubmit.disabled = true;
-        addPlaceSubmit.disabled = true;
+        buttonElement.disabled = true;
     } 
     else {
         buttonElement.classList.remove(settings.inactiveButtonClass);
-        checkFormType(formElement);
-        profileSubmit.disabled = false;
-        addPlaceSubmit.disabled = false;
+        buttonElement.disabled = false;
     }
 };
-
-// Checks which type of form in order to add submit functions back to proper forms
-const checkFormType = formElement => {
-    if (formElement.classList.contains("edit-box_profile")) {
-        formElement.addEventListener("submit", profileFormSubmit);
-    }
-    else {formElement.addEventListener("submit", addNewPlace)}
-}
 
 // Adds event listeners to all forms
 const setFormEventListeners = (formElement) => {
