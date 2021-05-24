@@ -1,3 +1,7 @@
+// CODE NOTE, PLACE AND CARD ARE USED INTERCHANGEABLY, THEY BOTH REFERENCE THE SAME
+// OBJECT WHICH CONTAINS AN IMG, TITLE, AND LIKE BUTTON REPRESENTED BY A HEART
+
+// CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 class Card {
 
     constructor (data, template) {
@@ -77,7 +81,9 @@ class Card {
     }
 }
 
-// places setup
+// NON CLASS CODE------------------------------------------------------------------------------------
+
+// INITIAL/DEFAULT CARDS/PLACE INFO
 const initialCards = [
     {
         name: "Gulf of California",
@@ -105,13 +111,55 @@ const initialCards = [
     }
 ];
 
+// Places Grid Variable
 const places = document.querySelector(".places");
 
-const renderCards = (card) => {
+// Add Card to Grid
+const renderCard = (card) => {
     places.prepend(card);
 }
 
+// Call Render Cards on initial set
 initialCards.forEach(card => {
     const newCard = new Card(card, "#place-template");
-    renderCards(newCard);
+    renderCard(newCard);
 })
+
+// ADDING A NEW CARD/PLACE CODE-----------------------------------------------------------------------
+
+// Add Place Variables
+const formAddPlace = document.querySelector(".edit-box_place");
+
+const addPlaceName = document.querySelector("#place-title");
+
+const addPlaceImage = document.querySelector("#image-link");
+
+
+// Add details to new Card for Add Place Modal Window
+const addPlaceDetails = (placeName, placeLink) => {
+    const newPlace = {
+        name: placeName,
+        link: placeLink
+    };
+    const newCard = new Card(newPlace, "#place-template");
+    renderCard(newCard);
+}
+
+// Render New Card
+const addNewPlace = (evt) => {
+    evt.preventDefault();
+    const placeName = addPlaceName.value;
+    const placeLink = addPlaceImage.value;
+    addNewPlaceDetails(placeName, placeLink);
+    clearNewPlaceDetails();
+    closePopup(addPlace);
+}
+
+// Clear add Place values after submitting form
+const clearNewPlaceDetails = () => {
+    addPlaceName.value = "";
+    addPlaceImage.value = "";
+}
+
+// SET EVENT LISTENER FOR ADDING A NEW CARD/PLACE ON SUBMISSION OF FORM
+formAddPlace.addEventListener("submit", addNewPlace);
