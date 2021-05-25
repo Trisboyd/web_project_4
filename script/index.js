@@ -43,13 +43,12 @@ const imagePopupPic = document.querySelector(".popup-image-container__pic");
 
 const imagePopupName = document.querySelector(".popup-image-container__title");
 
-// Place variables
-const likeButton = document.querySelectorAll(".place__button");
 
-const placeImage = document.querySelectorAll(".place__image");
+// CARD/PLACE RELATED CODE----------------------------------------------------------------------------------
 
+import {Card} from "./card.js";
 
-// places setup
+// INITIAL/DEFAULT CARDS/PLACE INFO
 const initialCards = [
     {
         name: "Gulf of California",
@@ -77,97 +76,60 @@ const initialCards = [
     }
 ];
 
+// Places Grid Variable
 const places = document.querySelector(".places");
 
-// define variables and put info into placeCards
-
-function writePlace(name, link) {
-    const placeTemplate = document.querySelector("#place-template").content.querySelector(".place");
-    const placeElement = placeTemplate.cloneNode(true);
-    const placeImage = placeElement.querySelector(".place__image");
-    const placeName = placeElement.querySelector(".place__name");
-    const placeButton = placeElement.querySelector(".place__button");
-    const trashButton = placeElement.querySelector(".place__trash");
-    placeImage.src = link;
-    placeImage.alt = name;
-    placeName.textContent = name;
-    setLikeButtonListener(placeButton);
-    removePlace(trashButton);
-    expandImage(placeImage, placeName);
-    return placeElement;
+// Add Card to Grid
+const renderCard = (card) => {
+    places.prepend(card);
 }
 
-// call close function on image popup exit button
-
-closeImagePopup();
-
-// Render placeCards
-
-function renderPlaces(name, link) {
-    const writtenPlace = writePlace(name, link);
-    places.prepend(writtenPlace);
-}
-
-// Call the Render Function
-
+// Call Render Cards on initial set
 initialCards.forEach(card => {
-    renderPlaces(card.name, card.link);
+    const newCard = new Card(card, "#place-template");
+    const cardElement = newCard.generateCard();
+    renderCard(cardElement);
 })
 
-// Toggle Like Buttons
+// ADDING A NEW CARD/PLACE CODE-----------------------------------------------------------------------
 
-function setLikeButtonListener(placeButton) {
-    placeButton.addEventListener("click", function () {
-        placeButton.classList.toggle("place__button_type_filled")
-    });
-}
 
-// Remove placeCards with trash button 
-
-function removePlace(trashButton) {
-    trashButton.addEventListener("click", function () {
-        trashButton.parentElement.remove();
-    });
-}
-
-// Open Image Popup
-
-function expandImage(placeImage, placeName) {
-    placeImage.addEventListener("click", function (evt) {
-        imagePopupPic.src = placeImage.src;
-        imagePopupPic.alt = `${placeName.textContent}`;
-        imagePopupName.textContent = `${placeName.textContent}`;
-        openPopup(imagePopup);
-    });
-}
-
-// New Card Details
-
-function addNewPlaceDetails(placeName, placeLink) {
+// Add details to new Card for Add Place Modal Window
+const addPlaceDetails = (placeName, placeLink) => {
     const newPlace = {
         name: placeName,
         link: placeLink
     };
-    renderPlaces(newPlace.name, newPlace.link);
+    const newCard = new Card(newPlace, "#place-template");
+    const cardElement = newCard.generateCard();
+    renderCard(cardElement);
 }
 
 // Render New Card
-
-function addNewPlace(evt) {
+const addNewPlace = (evt) => {
     evt.preventDefault();
-    const newPlaceName = addPlaceName.value;
-    const newPlaceImage = addPlaceImage.value;
-    addNewPlaceDetails(newPlaceName, newPlaceImage);
+    const placeName = addPlaceName.value;
+    const placeLink = addPlaceImage.value;
+    addPlaceDetails(placeName, placeLink);
     clearNewPlaceDetails();
     closePopup(addPlace);
 }
 
-// clear add new place details after submitting new place
-
-function clearNewPlaceDetails() {
+// Clear add Place values after submitting form
+const clearNewPlaceDetails = () => {
     addPlaceName.value = "";
     addPlaceImage.value = "";
 }
+
+// SET EVENT LISTENER FOR ADDING A NEW CARD/PLACE ON SUBMISSION OF FORM
+formAddPlace.addEventListener("submit", addNewPlace);
+
+
+// PROFILE CODE ------------------------------------------------------------------------------------------
+
+// call close function on image popup exit button
+
+closeImagePopup();
 
 // Open Profile Editor with default information
 
@@ -264,5 +226,25 @@ addPlaceButton.addEventListener("click", openAddPlace);
 
 addPlaceExitButton.addEventListener("click", closeAddPlace);
 
-formAddPlace.addEventListener("submit", addNewPlace);
+// VALIDATION CODE -----------------------------------------------------------------------------
 
+import {FormValidator} from "./formvalidator.js";
+
+const settings = {
+    formSelector: ".edit-box",
+    inputSelector: ".edit-box__text",
+    submitButtonSelector: ".edit-box__submit",
+    inactiveButtonClass: "edit-box__submit_inactive",
+    inputErrorClass: ".edit-box__text_type_error",
+    errorClass: ".edit-box__error_visible"
+  };
+
+const profileForm = document.querySelector(".edit-box_profile");
+const placeForm = document.querySelector(".edit-box_place");
+const profileValidator = new FormValidator(settings, profileForm);
+const addPlaceValidator = new FormValidator(settings, placeForm);
+
+
+
+profileValidator.enableFormValidation();
+addPlaceValidator.enableFormValidation();
