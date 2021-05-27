@@ -15,11 +15,8 @@ const formProfile = document.querySelector(".edit-box_profile");
 
 const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
-const formInput = document.querySelectorAll(".edit-box__text");
 
-const profileSubmit = document.querySelector("#profile-submit");
-
-// Add Place variables
+// Add Card/Place variables
 const addPlace = document.querySelector(".popup_add-place");
 
 const addPlaceExitButton = document.querySelector(".popup__exit_add-place");
@@ -39,16 +36,12 @@ const imagePopup = document.querySelector(".popup_image");
 
 const imagePopupExit = document.querySelector(".popup__exit_image");
 
-const imagePopupPic = document.querySelector(".popup-image-container__pic");
-
-const imagePopupName = document.querySelector(".popup-image-container__title");
-
 
 // CARD/PLACE RELATED CODE----------------------------------------------------------------------------------
 
 import {Card} from "./card.js";
 
-// INITIAL/DEFAULT CARDS/PLACE INFO
+// INITIAL CARDS/PLACE INFO
 const initialCards = [
     {
         name: "Gulf of California",
@@ -121,15 +114,15 @@ const clearNewPlaceDetails = () => {
     addPlaceImage.value = "";
 }
 
+// call close function on image popup exit button
+
+closeImagePopup();
+
 // SET EVENT LISTENER FOR ADDING A NEW CARD/PLACE ON SUBMISSION OF FORM
 formAddPlace.addEventListener("submit", addNewPlace);
 
 
-// PROFILE CODE ------------------------------------------------------------------------------------------
-
-// call close function on image popup exit button
-
-closeImagePopup();
+// PROFILE AND ADD CARD/PLACE CODE ------------------------------------------------------------------------------------------
 
 // Open Profile Editor with default information
 
@@ -166,11 +159,16 @@ function closeAddPlace() {
     closePopup(addPlace);
 }
 
-// Open Image Popup
+// Event Listeners
+editProfileButton.addEventListener("click", openEditBox);
 
-function openImagePopup() {
-    openPopup(imagePopup);
-}
+editProfileExitButton.addEventListener("click", closeEditBox);
+
+formProfile.addEventListener("submit", profileFormSubmit);
+
+addPlaceButton.addEventListener("click", openAddPlace);
+
+addPlaceExitButton.addEventListener("click", closeAddPlace);
 
 // Close Image Popup
 
@@ -179,6 +177,8 @@ function closeImagePopup() {
         closePopup(imagePopup);
     });
 }
+
+// HANDLE CLOSE POPUP FUNCTIONS INCLUDING ESC KEY AND CLICKS OUTSIDE MODAL WINDOW-------------------------------
 
 // Define ESC key and allow pressing ESC key to close modal window
 const escKey = 27;
@@ -215,16 +215,6 @@ document.addEventListener("click", function(evt) {
     }
 })
 
-// Event Listeners
-editProfileButton.addEventListener("click", openEditBox);
-
-editProfileExitButton.addEventListener("click", closeEditBox);
-
-formProfile.addEventListener("submit", profileFormSubmit);
-
-addPlaceButton.addEventListener("click", openAddPlace);
-
-addPlaceExitButton.addEventListener("click", closeAddPlace);
 
 // VALIDATION CODE -----------------------------------------------------------------------------
 

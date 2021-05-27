@@ -65,8 +65,30 @@ class Card {
     _openImagePopup() {
         document.querySelector(".popup_image")
         .classList.add("popup_visible");
+        document.addEventListener("keyup", (event) => {
+        this._handleEscUp(event)
+        });
     }
-
+ 
+    // Checks whether a keyup is an esc in order to close the image popup
+    _isEscEvent = (event) => {
+        const escKey = 27;
+        if (event.which === escKey) {
+            this._closePopup();
+        }
+    }   
+    // Activates the isEscevent function and prevents default settings
+    _handleEscUp = (event) => {
+        event.preventDefault();
+        this._isEscEvent(event);
+    }
+    // Closes the image popup
+    _closePopup = () => {
+        document.querySelector(".popup_image").classList.remove("popup_visible");
+        document.removeEventListener("keyup", () => {
+            this._handleEscUp()
+        });
+    }
 
     // Click trash icon and remove card
     _removeCard() {
