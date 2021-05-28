@@ -39,7 +39,7 @@ const imagePopupExit = document.querySelector(".popup__exit_image");
 
 // CARD/PLACE RELATED CODE----------------------------------------------------------------------------------
 
-import {Card} from "./card.js";
+import {Card} from "./CARD.js";
 
 // INITIAL CARDS/PLACE INFO
 const initialCards = [
@@ -77,9 +77,14 @@ const renderCard = (card) => {
     places.prepend(card);
 }
 
+// Create a New Card instance
+const createCard = (card) => {
+    return new Card(card, "#place-template");
+}
+
 // Call Render Cards on initial set
 initialCards.forEach(card => {
-    const newCard = new Card(card, "#place-template");
+    const newCard = createCard(card);
     const cardElement = newCard.generateCard();
     renderCard(cardElement);
 })
@@ -93,7 +98,7 @@ const addPlaceDetails = (placeName, placeLink) => {
         name: placeName,
         link: placeLink
     };
-    const newCard = new Card(newPlace, "#place-template");
+    const newCard = createCard(newPlace);
     const cardElement = newCard.generateCard();
     renderCard(cardElement);
 }
@@ -218,7 +223,7 @@ document.addEventListener("click", function(evt) {
 
 // VALIDATION CODE -----------------------------------------------------------------------------
 
-import {FormValidator} from "./formvalidator.js";
+import {FormValidator} from "./FORMVALIDATOR.js";
 
 const settings = {
     formSelector: ".edit-box",
