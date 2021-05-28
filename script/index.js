@@ -115,9 +115,15 @@ const addNewPlace = (evt) => {
 
 // Clear add Place values after submitting form
 const clearNewPlaceDetails = () => {
-    addPlaceName.value = "";
-    addPlaceImage.value = "";
+    formAddPlace.reset();
 }
+
+// function expandImage(name, link) {
+//     imagePopupPic.src = link
+//    imagePopupPic.alt = name
+//     imagePopupName.textContent =name
+//     openPopup(imagePopup)
+// }
 
 // call close function on image popup exit button
 
@@ -157,7 +163,7 @@ function closeEditBox() {
 function openAddPlace() {
     openPopup(addPlace);
     addPlaceSubmit.disabled = true;
-    addPlaceSubmit.classList.add("edit-box__submit_inactive");
+    addPlaceValidator.resetValidation();
 }
 
 function closeAddPlace() {
@@ -189,9 +195,8 @@ function closeImagePopup() {
 const escKey = 27;
 
 const isEscEvent = (evt, action) => {
-    const popupActive = document.querySelector(".popup_visible");
-
     if (evt.which === escKey) {
+        const popupActive = document.querySelector(".popup_visible");
         action(popupActive);
     }
 }
@@ -213,10 +218,9 @@ const closePopup = popupModal => {
 
 // Allows clicks outside the modal window to close the modal window
 document.addEventListener("click", function(evt) {
-    const popupActive = document.querySelector(".popup_visible");
     const targetElement = evt.target;
-    if (targetElement === popupActive) {
-        closePopup(popupActive);
+    if (targetElement.classList.contains("popup_visible")) {
+        closePopup(targetElement);
     }
 })
 
