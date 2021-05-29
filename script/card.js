@@ -1,6 +1,8 @@
 // CODE NOTE, PLACE AND CARD ARE USED INTERCHANGEABLY, THEY BOTH REFERENCE THE SAME
 // OBJECT WHICH CONTAINS AN IMG, TITLE, AND LIKE BUTTON REPRESENTED BY A HEART
 
+const imagePopup = document.querySelector(".popup_image");
+
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 class Card {
 
@@ -48,7 +50,7 @@ class Card {
         this._element.querySelector(".place__image")
         .addEventListener("click", () => {
             this._expandImage();
-            this._openPopup;
+            this._openPopup(imagePopup);
         })
 
     }

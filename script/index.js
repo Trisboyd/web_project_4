@@ -32,13 +32,8 @@ const formAddPlace = document.querySelector(".edit-box_place");
 const addPlaceSubmit = document.querySelector("#add-place-submit");
 
 // Image Popup variables
-const imagePopup = document.querySelector(".popup_image");
 
 const imagePopupExit = document.querySelector(".popup__exit_image");
-
-const imagePopupPic = document.querySelector(".popup-image-container__pic");
-
-const imagePopupName = document.querySelector(".popup-image-container__title");
 
 // HANDLE CLOSE POPUP FUNCTIONS INCLUDING ESC KEY AND CLICKS OUTSIDE MODAL WINDOW-------------------------------
 
@@ -118,7 +113,7 @@ const renderCard = (card) => {
 
 // Create a New Card instance
 const createCard = (card) => {
-    return new Card(card, "#place-template", openPopup(imagePopup));
+    return new Card(card, "#place-template", openPopup);
 }
 
 // Call Render Cards on initial set
