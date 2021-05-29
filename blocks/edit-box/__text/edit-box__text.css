@@ -16,7 +16,3 @@
 .edit-box__text:focus {
     outline: none;
 }
-
-.edit-box__text:invalid {
-    border-bottom: 1px solid #f00;
-}

@@ -12,12 +12,14 @@ class FormValidator {
     // Enables validation message to appear
     _showError = (inputElement, errorMessage) => {
         const errorElement = this._element.querySelector(`#${inputElement.id}-error`);
+        inputElement.classList.add(this._inputErrorClass)
         errorElement.textContent = errorMessage;
     }   
 
     // Hides validation message
     _hideError = (inputElement) => {
         const errorElement = this._element.querySelector(`#${inputElement.id}-error`);
+        inputElement.classList.remove(this._inputErrorClass)
         errorElement.textContent = "";
     }
 

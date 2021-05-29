@@ -227,7 +227,7 @@ const settings = {
     inputSelector: ".edit-box__text",
     submitButtonSelector: ".edit-box__submit",
     inactiveButtonClass: "edit-box__submit_inactive",
-    inputErrorClass: ".edit-box__text_type_error",
+    inputErrorClass: "edit-box__text_type_error",
     errorClass: ".edit-box__error_visible"
   };
 
