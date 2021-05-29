@@ -4,10 +4,11 @@
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 class Card {
 
-    constructor (data, template) {
+    constructor (data, template, popupHandler) {
         this._name = data.name;
         this._link = data.link;
         this._template = template;
+        this._openPopup = popupHandler;
     }
 
     // Gathers template from HTML for insertion of unique data
@@ -47,48 +48,46 @@ class Card {
         this._element.querySelector(".place__image")
         .addEventListener("click", () => {
             this._expandImage();
+            this._openPopup;
         })
 
     }
 
     // Click on image and have it fill modal window
      _expandImage() {
-        const imagePopupPic = document.querySelector(".popup-image-container__pic");
-        const imagePopupName = document.querySelector(".popup-image-container__title");
-        imagePopupPic.src = this._element.querySelector(".place__image").src;
-        imagePopupPic.alt = this._element.querySelector(".place__image").textContent;
-        imagePopupName.textContent = this._element.querySelector(".place__name").textContent;
-        this._openImagePopup();
+        document.querySelector(".popup-image-container__pic").src = this._element.querySelector(".place__image").src;
+        document.querySelector(".popup-image-container__pic").alt = this._element.querySelector(".place__image").textContent
+        document.querySelector(".popup-image-container__title").textContent = this._element.querySelector(".place__name").textContent;
     }
 
     // Open Modal Window for Image
-    _openImagePopup() {
-        document.querySelector(".popup_image")
-        .classList.add("popup_visible");
-        document.addEventListener("keyup", (event) => {
-        this._handleEscUp(event)
-        });
-    }
+    // _openImagePopup() {
+    //     document.querySelector(".popup_image")
+    //     .classList.add("popup_visible");
+    //     document.addEventListener("keyup", (event) => {
+    //     this._handleEscUp(event)
+    //     });
+    // }
  
     // Checks whether a keyup is an esc in order to close the image popup
-    _isEscEvent = (event) => {
-        const escKey = 27;
-        if (event.which === escKey) {
-            this._closePopup();
-        }
-    }   
+    // _isEscEvent = (event) => {
+    //     const escKey = 27;
+    //     if (event.which === escKey) {
+    //         this._closePopup();
+    //     }
+    // }   
     // Activates the isEscevent function and prevents default settings
-    _handleEscUp = (event) => {
-        event.preventDefault();
-        this._isEscEvent(event);
-    }
+    // _handleEscUp = (event) => {
+    //     event.preventDefault();
+    //     this._isEscEvent(event);
+    // }
     // Closes the image popup
-    _closePopup = () => {
-        document.querySelector(".popup_image").classList.remove("popup_visible");
-        document.removeEventListener("keyup", () => {
-            this._handleEscUp()
-        });
-    }
+    // _closePopup = () => {
+    //     document.querySelector(".popup_image").classList.remove("popup_visible");
+    //     document.removeEventListener("keyup", () => {
+    //         this._handleEscUp()
+    //     });
+    // }
 
     // Click trash icon and remove card
     _removeCard() {

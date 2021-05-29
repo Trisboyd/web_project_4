@@ -36,6 +36,45 @@ const imagePopup = document.querySelector(".popup_image");
 
 const imagePopupExit = document.querySelector(".popup__exit_image");
 
+const imagePopupPic = document.querySelector(".popup-image-container__pic");
+
+const imagePopupName = document.querySelector(".popup-image-container__title");
+
+// HANDLE CLOSE POPUP FUNCTIONS INCLUDING ESC KEY AND CLICKS OUTSIDE MODAL WINDOW-------------------------------
+
+// Define ESC key and allow pressing ESC key to close modal window
+const escKey = 27;
+
+const isEscEvent = (evt, action) => {
+    if (evt.which === escKey) {
+        const popupActive = document.querySelector(".popup_visible");
+        action(popupActive);
+    }
+}
+
+const handleEscUp = evt => {
+    evt.preventDefault();
+    isEscEvent(evt, closePopup);
+}
+
+const openPopup = popupModal => {
+    popupModal.classList.add("popup_visible");
+    document.addEventListener("keyup", handleEscUp);
+}
+
+const closePopup = popupModal => {
+    popupModal.classList.remove("popup_visible");
+    document.removeEventListener("keyup", handleEscUp);
+}
+
+// Allows clicks outside the modal window to close the modal window
+document.addEventListener("click", function(evt) {
+    const targetElement = evt.target;
+    if (targetElement.classList.contains("popup_visible")) {
+        closePopup(targetElement);
+    }
+})
+
 
 // CARD/PLACE RELATED CODE----------------------------------------------------------------------------------
 
@@ -79,7 +118,7 @@ const renderCard = (card) => {
 
 // Create a New Card instance
 const createCard = (card) => {
-    return new Card(card, "#place-template");
+    return new Card(card, "#place-template", openPopup(imagePopup));
 }
 
 // Call Render Cards on initial set
@@ -118,11 +157,11 @@ const clearNewPlaceDetails = () => {
     formAddPlace.reset();
 }
 
-// function expandImage(name, link) {
-//     imagePopupPic.src = link
-//    imagePopupPic.alt = name
-//     imagePopupName.textContent =name
-//     openPopup(imagePopup)
+// const expandImage = (name, link) => {
+//     imagePopupPic.src = link;
+//     imagePopupPic.alt = name;
+//     imagePopupName.textContent = name;
+//     openPopup(imagePopup);
 // }
 
 // call close function on image popup exit button
@@ -189,40 +228,7 @@ function closeImagePopup() {
     });
 }
 
-// HANDLE CLOSE POPUP FUNCTIONS INCLUDING ESC KEY AND CLICKS OUTSIDE MODAL WINDOW-------------------------------
 
-// Define ESC key and allow pressing ESC key to close modal window
-const escKey = 27;
-
-const isEscEvent = (evt, action) => {
-    if (evt.which === escKey) {
-        const popupActive = document.querySelector(".popup_visible");
-        action(popupActive);
-    }
-}
-
-const handleEscUp = evt => {
-    evt.preventDefault();
-    isEscEvent(evt, closePopup);
-}
-
-const openPopup = popupModal => {
-    popupModal.classList.add("popup_visible");
-    document.addEventListener("keyup", handleEscUp);
-}
-
-const closePopup = popupModal => {
-    popupModal.classList.remove("popup_visible");
-    document.removeEventListener("keyup", handleEscUp);
-}
-
-// Allows clicks outside the modal window to close the modal window
-document.addEventListener("click", function(evt) {
-    const targetElement = evt.target;
-    if (targetElement.classList.contains("popup_visible")) {
-        closePopup(targetElement);
-    }
-})
 
 
 // VALIDATION CODE -----------------------------------------------------------------------------
