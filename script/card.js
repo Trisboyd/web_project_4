@@ -1,7 +1,6 @@
 // CODE NOTE, PLACE AND CARD ARE USED INTERCHANGEABLY, THEY BOTH REFERENCE THE SAME
 // OBJECT WHICH CONTAINS AN IMG, TITLE, AND LIKE BUTTON REPRESENTED BY A HEART
 
-const imagePopup = document.querySelector(".popup_image");
 
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 class Card {
@@ -50,7 +49,6 @@ class Card {
         this._element.querySelector(".place__image")
         .addEventListener("click", () => {
             this._expandImage();
-            this._openPopup(imagePopup);
         })
 
     }
@@ -60,36 +58,8 @@ class Card {
         document.querySelector(".popup-image-container__pic").src = this._element.querySelector(".place__image").src;
         document.querySelector(".popup-image-container__pic").alt = this._element.querySelector(".place__image").textContent
         document.querySelector(".popup-image-container__title").textContent = this._element.querySelector(".place__name").textContent;
+        this._openPopup(document.querySelector(".popup_image"));
     }
-
-    // Open Modal Window for Image
-    // _openImagePopup() {
-    //     document.querySelector(".popup_image")
-    //     .classList.add("popup_visible");
-    //     document.addEventListener("keyup", (event) => {
-    //     this._handleEscUp(event)
-    //     });
-    // }
- 
-    // Checks whether a keyup is an esc in order to close the image popup
-    // _isEscEvent = (event) => {
-    //     const escKey = 27;
-    //     if (event.which === escKey) {
-    //         this._closePopup();
-    //     }
-    // }   
-    // Activates the isEscevent function and prevents default settings
-    // _handleEscUp = (event) => {
-    //     event.preventDefault();
-    //     this._isEscEvent(event);
-    // }
-    // Closes the image popup
-    // _closePopup = () => {
-    //     document.querySelector(".popup_image").classList.remove("popup_visible");
-    //     document.removeEventListener("keyup", () => {
-    //         this._handleEscUp()
-    //     });
-    // }
 
     // Click trash icon and remove card
     _removeCard() {

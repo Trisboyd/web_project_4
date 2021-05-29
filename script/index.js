@@ -33,6 +33,8 @@ const addPlaceSubmit = document.querySelector("#add-place-submit");
 
 // Image Popup variables
 
+const imagePopup = document.querySelector(".popup_image");
+
 const imagePopupExit = document.querySelector(".popup__exit_image");
 
 // HANDLE CLOSE POPUP FUNCTIONS INCLUDING ESC KEY AND CLICKS OUTSIDE MODAL WINDOW-------------------------------
@@ -75,7 +77,7 @@ document.addEventListener("click", function(evt) {
 
 import {Card} from "./CARD.js";
 
-// INITIAL CARDS/PLACE INFO
+// Initial Cards/Places Info
 const initialCards = [
     {
         name: "Gulf of California",
@@ -152,16 +154,14 @@ const clearNewPlaceDetails = () => {
     formAddPlace.reset();
 }
 
-// const expandImage = (name, link) => {
-//     imagePopupPic.src = link;
-//     imagePopupPic.alt = name;
-//     imagePopupName.textContent = name;
-//     openPopup(imagePopup);
-// }
+// Close Image Popup
 
-// call close function on image popup exit button
+const closeImagePopup = () => {
+        closePopup(imagePopup);
+}
 
-closeImagePopup();
+imagePopupExit.addEventListener("click", closeImagePopup);
+
 
 // SET EVENT LISTENER FOR ADDING A NEW CARD/PLACE ON SUBMISSION OF FORM
 formAddPlace.addEventListener("submit", addNewPlace);
@@ -204,7 +204,7 @@ function closeAddPlace() {
     closePopup(addPlace);
 }
 
-// Event Listeners
+// Form Event Listeners
 editProfileButton.addEventListener("click", openEditBox);
 
 editProfileExitButton.addEventListener("click", closeEditBox);
@@ -214,14 +214,6 @@ formProfile.addEventListener("submit", profileFormSubmit);
 addPlaceButton.addEventListener("click", openAddPlace);
 
 addPlaceExitButton.addEventListener("click", closeAddPlace);
-
-// Close Image Popup
-
-function closeImagePopup() {
-    imagePopupExit.addEventListener("click", function () {
-        closePopup(imagePopup);
-    });
-}
 
 
 
