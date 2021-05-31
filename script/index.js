@@ -37,6 +37,10 @@ const imagePopup = document.querySelector(".popup_image");
 
 const imagePopupExit = document.querySelector(".popup__exit_image");
 
+const imagePopupPic = document.querySelector(".popup-image-container__pic");
+
+const imagePopupTitle = document.querySelector(".popup-image-container__title")
+
 // HANDLE CLOSE POPUP FUNCTIONS INCLUDING ESC KEY AND CLICKS OUTSIDE MODAL WINDOW-------------------------------
 
 // Define ESC key and allow pressing ESC key to close modal window
@@ -105,6 +109,14 @@ const initialCards = [
     }
 ];
 
+// Add image popup function to card
+const expandImage = (name, link) => {
+    imagePopupPic.src = link
+    imagePopupPic.alt = name
+    imagePopupTitle.textContent = name
+    openPopup(imagePopup)
+}
+
 // Places Grid Variable
 const places = document.querySelector(".places");
 
@@ -115,7 +127,7 @@ const renderCard = (card) => {
 
 // Create a New Card instance
 const createCard = (card) => {
-    return new Card(card, "#place-template", openPopup);
+    return new Card(card, "#place-template", expandImage);
 }
 
 // Call Render Cards on initial set
