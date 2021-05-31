@@ -9,7 +9,7 @@ class Card {
         this._name = data.name;
         this._link = data.link;
         this._template = template;
-        this._openPopup = popupHandler;
+        this._expandImage = popupHandler;
     }
 
     // Gathers template from HTML for insertion of unique data
@@ -48,17 +48,9 @@ class Card {
 
         this._element.querySelector(".place__image")
         .addEventListener("click", () => {
-            this._expandImage();
+            this._expandImage(this._name, this._link);
         })
 
-    }
-
-    // Click on image and have it fill modal window
-     _expandImage() {
-        document.querySelector(".popup-image-container__pic").src = this._element.querySelector(".place__image").src;
-        document.querySelector(".popup-image-container__pic").alt = this._element.querySelector(".place__image").textContent
-        document.querySelector(".popup-image-container__title").textContent = this._element.querySelector(".place__name").textContent;
-        this._openPopup(document.querySelector(".popup_image"));
     }
 
     // Click trash icon and remove card
