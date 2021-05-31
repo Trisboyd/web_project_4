@@ -75,7 +75,7 @@ document.addEventListener("click", function(evt) {
 
 // CARD/PLACE RELATED CODE----------------------------------------------------------------------------------
 
-import {Card} from "./CARD.js";
+import {Card} from "./Card.js";
 
 // Initial Cards/Places Info
 const initialCards = [
@@ -196,7 +196,6 @@ function closeEditBox() {
 
 function openAddPlace() {
     openPopup(addPlace);
-    addPlaceSubmit.disabled = true;
     addPlaceValidator.resetValidation();
 }
 
@@ -220,7 +219,7 @@ addPlaceExitButton.addEventListener("click", closeAddPlace);
 
 // VALIDATION CODE -----------------------------------------------------------------------------
 
-import {FormValidator} from "./FORMVALIDATOR.js";
+import {FormValidator} from "./FormValidator.js";
 
 const settings = {
     formSelector: ".edit-box",
