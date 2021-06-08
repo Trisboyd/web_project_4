@@ -1,11 +1,11 @@
-// NEED TO IMPORT THESE
-const imagePopupPic = document.querySelector(".popup-image-container__pic");
+// IMPORTS
 
-const imagePopupTitle = document.querySelector(".popup-image-container__title")
-
-
+import {imagePopupPic, imagePopupTitle} from "../utilities/constants.js";
 
 import Popup from "./Popup.js";
+
+
+// Popup class for expanding card images
 
 export default class PopupWithImage extends Popup {
 
@@ -14,7 +14,7 @@ export default class PopupWithImage extends Popup {
     }
 
     // Modify opening to include insertion of image and title data
-    open(data) {
+    open( {data} ) {
         imagePopupPic.src = data.link;
         imagePopupPic.alt = data.name;
         imagePopupTitle.textContent = data.name;

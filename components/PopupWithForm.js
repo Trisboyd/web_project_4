@@ -1,17 +1,9 @@
-// IMPORT THESE CONSTANTS
+// IMPORTS
 
-const profileName = document.querySelector(".profile__name");
-
-const profileDescriptor = document.querySelector(".profile__descriptor");
-
-const formSubmitButton = document.querySelector(".edit-box__submit");
-
-const editName = document.querySelector(".edit-box__text_type_name");
-
-const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
-
+import {profileName, profileDescriptor, editName, editDescriptor} from "../utilities/constants.js";
 
 import Popup from "./Popup.js";
+
 
 // PopupWithForm Class
 

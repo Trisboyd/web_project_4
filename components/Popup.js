@@ -1,5 +1,5 @@
 // NEED TO IMPORT escKey
-const escKey = 27;
+import {escKey} from "../utilities/constants.js";
 
 export default class Popup {
 
@@ -9,11 +9,12 @@ export default class Popup {
     }
 
     open() {
-        this._popup.classList.add(".popup_visible");
+        this._popup.classList.add("popup_visible");
+        document.addEventListener("keyup", this._handleEscClose)
     };
 
     close() {
-        this._popup.classList.remove(".popup_visible");
+        this._popup.classList.remove("popup_visible");
     };
 
     _handleEscClose(event) {
@@ -33,5 +34,6 @@ export default class Popup {
                 this.close();
                 }
             })
+
     };
 }

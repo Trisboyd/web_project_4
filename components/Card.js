@@ -3,9 +3,9 @@
 
 
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
-class Card {
+export default class Card {
 
-    constructor ({data, handleCardClick}, template) {
+    constructor ({ data, handleCardClick }, template) {
         this._name = data.name;
         this._link = data.link;
         this._handleCardClick = handleCardClick;
@@ -14,9 +14,9 @@ class Card {
 
     // Gathers template from HTML for insertion of unique data
     _getTemplate() {
-        const cardElement = document
-        .querySelector(this._template)
-        .content.querySelector(".place")
+        const cardElement = document.querySelector
+        (this._template).content
+        .querySelector(".place")
         .cloneNode(true);
 
         this._element = cardElement;
@@ -68,5 +68,3 @@ class Card {
         .toggle("place__button_type_filled")
     }
 }
-
-export {Card};
