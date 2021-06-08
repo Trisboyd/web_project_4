@@ -15,6 +15,9 @@ const formProfile = document.querySelector(".edit-box_profile");
 
 const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
+// Submit Button for both popups
+
+const formSubmitButton = document.querySelector(".edit-box__submit");
 
 // Add Card/Place variables
 const addPlace = document.querySelector(".popup_add-place");
@@ -232,6 +235,8 @@ addPlaceExitButton.addEventListener("click", closeAddPlace);
 // VALIDATION CODE -----------------------------------------------------------------------------
 
 import {FormValidator} from "./FormValidator.js";
+import PopupWithImage from "./PopupWithImage.js";
+import Section from "./Section.js";
 
 const settings = {
     formSelector: ".edit-box",
@@ -251,3 +256,35 @@ const addPlaceValidator = new FormValidator(settings, placeForm);
 
 profileValidator.enableFormValidation();
 addPlaceValidator.enableFormValidation();
+
+
+
+
+
+
+
+// NEW STUFF !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+const imagePopup = new PopupWithImage(popup_image);
+
+const cardList = new Section({
+    data: initialCardList,
+    renderer: (initialCard) => {
+        const card = new Card({
+            initialCard,
+            handleCardClick: () => {
+                imagePopup.open({initialCard});
+            }
+        }, "#place-template");
+
+        cardList.addItem(card.generateCard());
+    }
+
+    }, ".places"
+)
+
+cardList.renderItems();
+
+
+editProfileButton.addEventListener("click", ()=> {
+    const profilePopup = new PopupwithForm
+})

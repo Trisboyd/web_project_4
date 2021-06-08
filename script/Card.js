@@ -5,11 +5,11 @@
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 class Card {
 
-    constructor (data, template, popupHandler) {
+    constructor ({data, handleCardClick}, template) {
         this._name = data.name;
         this._link = data.link;
+        this._handleCardClick = handleCardClick;
         this._template = template;
-        this._expandImage = popupHandler;
     }
 
     // Gathers template from HTML for insertion of unique data
@@ -48,9 +48,11 @@ class Card {
 
         this._element.querySelector(".place__image")
         .addEventListener("click", () => {
-            this._expandImage(this._name, this._link);
+            this._handleCardClick (
+                {name: this._name, 
+                link: this._link
+                });
         })
-
     }
 
     // Click trash icon and remove card
