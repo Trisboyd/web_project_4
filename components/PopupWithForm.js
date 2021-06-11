@@ -9,28 +9,39 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
 
-    constructor(formSubmission, popupSelector) { 
+    constructor( {formSubmission}, popupSelector) { 
         super(popupSelector);
         this._formSubmit = formSubmission;
+        this._formSubmit = this._formSubmit.bind(this);
         // formSubmission should be the function that processes the submission of data into the popup
     }
 
     // Takes data from form inputs
     _getInputValues() {
         this._popupArray = Array.from(this._popup.querySelectorAll(".edit-box__text"));
-        this._inputObject = {};
+        this.inputObject = {};
         this._popupArray.forEach((input) => {
-            this._inputObject[this._popupArray.indexOf(input)] = input;
+            const textInput = input.value;
+            this.inputObject[input.name] = textInput;
         });
-        return this._inputObject;
+        return this.inputObject;
     };
 
     open() {
         super.open();
         if (this._popup.classList.contains("popup_profile-edit")) {
-            editName.textContent = profileName.textContent;
-            editDescriptor.textContent = profileDescriptor.textContent;
+            editName.value = profileName.textContent;
+            editDescriptor.value = profileDescriptor.textContent;
         };
+    }
+
+    // Modify close to include reseting input fields
+    close() {
+        this._form.removeEventListener("submit", this._formSubmit)
+        super.close();
+        if (this._popup.classList.contains("popup_add-place")) {
+            this._form.reset();
+        }
     }
 
     // Modify event listeners for submission
@@ -38,14 +49,12 @@ export default class PopupWithForm extends Popup {
         super.setEventListeners();
         this._form = this._popup.querySelector(".edit-box");
         this._form.addEventListener("submit", () => {
-            this._getInputValues();
-            this._formSubmit(this._inputObject);
+            this._submitForm();
         })
     };
 
-    // Modify close to include reseting input fields
-    close() {
-        super.close();
-        this._form.reset();
+    _submitForm() {
+        this._formSubmit(this._getInputValues());
+        this.close();
     }
 }

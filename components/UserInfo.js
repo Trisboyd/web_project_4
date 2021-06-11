@@ -4,21 +4,27 @@ const profileDescriptor = document.querySelector(".profile__descriptor");
 
 export default class UserInfo {
 
-    constructor(data) {
-        this._name = data.name;
-        this._descriptor = data.descriptor;
+    constructor(name, descriptor) {
+        this._name = document.querySelector(`.${name}`);
+        this._descriptor = document.querySelector(`.${descriptor}`);
     }
 
     getUserInfo() {
         this._userInfo = {
-            userName: this._name.textContent,
-            userDescriptor: this._descriptor.textContent
+            name: this._name.textContent,
+            descriptor: this._descriptor.textContent
         }
         return this._userInfo;
     }
 
-    setUserInfo() {
-        profileName.textContent = this._userInfo.userName;
-        profileDescriptor.textContent = this._userInfo.userDescriptor;
+    setUserInfo(data) {
+        profileName.textContent = data.name;
+        profileDescriptor.textContent = data.descriptor;
     }
+
+    // setUserInfo({data}) {
+    //     profileName.textContent = data.input0;
+    //     profileDescriptor.textContent = data.input1;
+    // }
+ 
 }
