@@ -204,6 +204,7 @@ const addPlacePopup = new PopupWithForm({
 
 addPlaceButton.addEventListener("click", () => {
     addPlacePopup.open();
+    addPlaceValidator.resetValidation();
 })
 
 addPlacePopup.setEventListeners();
