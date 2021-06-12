@@ -15,6 +15,7 @@ module.exports = {
     publicPath: ''
   },
   target: ['web', 'es5'], // ensure the Webpack glue code is ES5 compatible too
+  stats: {children: true},
   mode: 'development',
   devServer: {
     contentBase: path.resolve(__dirname, './dist'),
@@ -43,7 +44,8 @@ module.exports = {
         use: [
           MiniCssExtractPlugin.loader,
           {
-            loader: "css-loader"
+            loader: "css-loader",
+            options: { importLoaders: 1 }
           },
           "postcss-loader"
         ],
@@ -52,9 +54,11 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: "./src/index.html" 
+      template: "./src/index.html",
+      inject: "body"
     }),
     new CleanWebpackPlugin(),
     new MiniCssExtractPlugin()
   ]
 }
+

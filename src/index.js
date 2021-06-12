@@ -1,6 +1,8 @@
 
 // IMPORTS ________________________________________________________________________________
 
+import "./pages/index.css";
+
 import Card from "./components/Card.js";
 import FormValidator from "./components/FormValidator.js";
 import PopupWithImage from "./components/PopupWithImage.js";
@@ -53,21 +55,19 @@ const newUser = new UserInfo("profile__name", "profile__descriptor");
 
 const profilePopup = new PopupWithForm({
     formSubmission: () => {
-        // const newUser = new UserInfo(
-        //     {data: profilePopup.inputObject}
-        // )
-        // newUser.getUserInfo();
         newUser.setUserInfo(profilePopup.inputObject);
         },
     }, "popup_profile-edit");
 
 
+// Add event listener on "edit profile" to open profilePopup
 
 editProfileButton.addEventListener("click", () => {
     profilePopup.open();
     profilePopup.setEventListeners();
 })
 
+// Create popup for adding a Card
 
 const addPlacePopup = new PopupWithForm({
     formSubmission: () => {
@@ -81,10 +81,15 @@ const addPlacePopup = new PopupWithForm({
     } 
     }, "popup_add-place");
 
+
+// Add event listener for "add place" button to open addPlaceProfile
+
 addPlaceButton.addEventListener("click", () => {
     addPlacePopup.open();
     addPlaceValidator.resetValidation();
 })
+
+// Add event listeners for "add place"
 
 addPlacePopup.setEventListeners();
 
