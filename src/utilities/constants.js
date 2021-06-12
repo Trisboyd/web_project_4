@@ -1,50 +1,12 @@
 // profile variables
 export const editProfileButton = document.querySelector(".profile__edit-button");
 
-export const editProfileExitButton = document.querySelector(".popup__exit_edit-profile");
-
-export const profileEditor = document.querySelector(".popup_profile-edit");
-
-export const profileName = document.querySelector(".profile__name");
-
-export const profileDescriptor = document.querySelector(".profile__descriptor");
-
 export const editName = document.querySelector(".edit-box__text_type_name");
-
-export const formProfile = document.querySelector(".edit-box_profile");
 
 export const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
-// Submit Button for both popups
-
-export const formSubmitButton = document.querySelector(".edit-box__submit");
-
 // Add Card/Place variables
-export const addPlace = document.querySelector(".popup_add-place");
-
-export const addPlaceExitButton = document.querySelector(".popup__exit_add-place");
-
 export const addPlaceButton = document.querySelector(".profile__add-place-button");
-
-export const addPlaceName = document.querySelector("#place-title");
-
-export const addPlaceImage = document.querySelector("#image-link");
-
-export const formAddPlace = document.querySelector(".edit-box_place");
-
-export const addPlaceSubmit = document.querySelector("#add-place-submit");
-
-// escKey, places, settings, profileForm, editProfileButton, placeForm, initialCards, addPlaceButton, editName, editDescriptor
-
-// Image Popup variables
-
-export const imagePopup = document.querySelector(".popup_image");
-
-export const imagePopupExit = document.querySelector(".popup__exit_image");
-
-export const imagePopupPic = document.querySelector(".popup-image-container__pic");
-
-export const imagePopupTitle = document.querySelector(".popup-image-container__title")
 
 // Define ESC key and allow pressing ESC key to close modal window
 export const escKey = 27;
