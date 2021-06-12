@@ -1,7 +1,3 @@
-// IMPORTS
-
-import {profileName, profileDescriptor, editName, editDescriptor} from "../utilities/constants.js";
-
 import Popup from "./Popup.js";
 
 
@@ -9,39 +5,27 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
 
-    constructor( {formSubmission}, popupSelector) { 
-        super(popupSelector);
+    constructor( {formSubmission}, popupSelector, escKey) { 
+        super(popupSelector, escKey);
         this._formSubmit = formSubmission;
-        this._formSubmit = this._formSubmit.bind(this);
         // formSubmission should be the function that processes the submission of data into the popup
     }
 
     // Takes data from form inputs
     _getInputValues() {
-        this._popupArray = Array.from(this._popup.querySelectorAll(".edit-box__text"));
+        this._inputList = Array.from(this._popup.querySelectorAll(".edit-box__text"));
         this.inputObject = {};
-        this._popupArray.forEach((input) => {
+        this._inputList.forEach((input) => {
             const textInput = input.value;
             this.inputObject[input.name] = textInput;
         });
         return this.inputObject;
     };
 
-    open() {
-        super.open();
-        if (this._popup.classList.contains("popup_profile-edit")) {
-            editName.value = profileName.textContent;
-            editDescriptor.value = profileDescriptor.textContent;
-        };
-    }
-
     // Modify close to include reseting input fields
     close() {
-        this._form.removeEventListener("submit", this._formSubmit)
         super.close();
-        if (this._popup.classList.contains("popup_add-place")) {
-            this._form.reset();
-        }
+        this._form.reset();
     }
 
     // Modify event listeners for submission
@@ -53,6 +37,7 @@ export default class PopupWithForm extends Popup {
         })
     };
 
+    // Calls formSubmission and closes popup
     _submitForm() {
         this._formSubmit(this._getInputValues());
         this.close();

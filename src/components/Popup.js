@@ -1,11 +1,9 @@
-// NEED TO IMPORT escKey
-import {escKey} from "../utilities/constants.js";
-
 export default class Popup {
 
-    constructor(popupSelector) {
+    constructor(popupSelector, escKey) {
         this._popup = document.querySelector(`.${popupSelector}`);
         this._handleEscClose = this._handleEscClose.bind(this);
+        this._escKey = escKey;
     }
 
     open() {
@@ -15,17 +13,17 @@ export default class Popup {
 
     close() {
         this._popup.classList.remove("popup_visible");
+        document.removeEventListener("keyup", this._handleEscClose)
     };
 
     _handleEscClose(event) {
-        if (event.which === escKey) {
-            this.close(this._popup);
+        if (event.which === this._escKey) {
+            this.close();
         };
     }   
 
-
     setEventListeners() {
-        document.addEventListener("click", (event) => {
+        this._popup.addEventListener("click", (event) => {
             const targetElement = event.target;
             if (targetElement.classList.contains("popup_visible")) {
                 this.close();

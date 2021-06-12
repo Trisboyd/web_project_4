@@ -1,7 +1,3 @@
-const profileName = document.querySelector(".profile__name");
-
-const profileDescriptor = document.querySelector(".profile__descriptor");
-
 export default class UserInfo {
 
     constructor(name, descriptor) {
@@ -18,13 +14,8 @@ export default class UserInfo {
     }
 
     setUserInfo(data) {
-        profileName.textContent = data.name;
-        profileDescriptor.textContent = data.descriptor;
+        this._name.textContent = data.name;
+        this._descriptor.textContent = data.descriptor;
     }
-
-    // setUserInfo({data}) {
-    //     profileName.textContent = data.input0;
-    //     profileDescriptor.textContent = data.input1;
-    // }
  
 }

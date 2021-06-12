@@ -34,6 +34,8 @@ export const formAddPlace = document.querySelector(".edit-box_place");
 
 export const addPlaceSubmit = document.querySelector("#add-place-submit");
 
+// escKey, places, settings, profileForm, editProfileButton, placeForm, initialCards, addPlaceButton, editName, editDescriptor
+
 // Image Popup variables
 
 export const imagePopup = document.querySelector(".popup_image");
