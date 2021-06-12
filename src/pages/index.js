@@ -86,6 +86,8 @@ const cardList = new Section({
 
 cardList.renderItems();
 
+// ADD A CARD POPUP______________________________________________________________________________________
+
 // Create popup for adding a Card
 const addPlacePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
@@ -95,7 +97,7 @@ const addPlacePopup = new PopupWithForm({
     }, "popup_add-place", escKey);
 
 
-// Add event listener for "add place" button to open addPlaceProfile
+// Add event listener for "add place" button to open addPlace
 addPlaceButton.addEventListener("click", () => {
     addPlacePopup.open();
     addPlaceValidator.resetValidation();
