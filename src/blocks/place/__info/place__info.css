@@ -1,3 +1,5 @@
+@import url(./place__info_like-column.css);
+
 .place__info {
     background-color: #fff;
     display: flex;

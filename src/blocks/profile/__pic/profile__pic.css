@@ -1,5 +1,11 @@
+@import url(./_edit/profile__pic_edit.css);
+@import url(./_edit/_visible/profile__pic_edit_visible.css);
+@import url(./_hovered/profile__pic_hovered.css);
+
 .profile__pic {
     border-radius: 50%;
     max-width: 127.5px;
     min-height: 127.5px;
+    transition: opacity .3s ease-in-out .3s;
+    position: relative;
 }

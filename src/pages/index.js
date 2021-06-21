@@ -105,3 +105,40 @@ addPlaceButton.addEventListener("click", () => {
 
 // Add event listeners for "add place"
 addPlacePopup.setEventListeners();
+
+//TEST CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+const deleteConfirmationPopup = document.querySelector(".popup_card-delete");
+
+const changeAvatarPopup = document.querySelector(".popup_change-avatar");
+
+const popupVisible = (popup) => {
+    popup.classList.add("popup_visible");
+}
+
+const cardTrash = document.querySelector(".place__trash");
+
+const profilePic = document.querySelector(".profile__pic");
+
+cardTrash.addEventListener("click", () => {
+    popupVisible(deleteConfirmationPopup);
+});
+
+
+//PROFILE AVATAR TESTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+const editVisible = () => {
+    profilePicEdit.classList.toggle("profile__pic_edit_visible");
+    profilePic.classList.toggle("profile__pic_hovered");
+}
+
+const profileImageContainer = document.querySelector(".profile__image-container");
+
+const profilePicEdit = document.querySelector(".profile__pic_edit");
+
+profileImageContainer.addEventListener("mouseover", editVisible);
+profileImageContainer.addEventListener("mouseout", editVisible);
+
+profileImageContainer.addEventListener("click", () => {
+    popupVisible(changeAvatarPopup);
+})

@@ -15,7 +15,10 @@
 
     <main>
         <section class="profile">
-            <img class="profile__pic" src="<%=require('./images/coronado.jpg')%>" alt="profile image">
+            <div class="profile__image-container">
+                <img class="profile__pic" src="<%=require('./images/coronado.jpg')%>" alt="profile image">
+                <img class="profile__pic_edit" src="<%=require('./images/edit-avatar-button.png')%>" alt="edit avatar button">
+            </div>
             <div class="profile__text">
                 <div class="profile__top-row">
                     <h1 class="profile__name">Francisco Coronado</h1>
@@ -40,8 +43,11 @@
             <img class="place__image" alt="">
             <div class="place__info">
                 <h2 class="place__name"></h2>
-                <button class="place__button place__button_type_unfilled" type="button"
-                    aria-label="like-button"></button>
+                <div class="place__info_like-column">
+                    <button class="place__button place__button_type_unfilled" type="button"
+                        aria-label="like-button"></button>
+                    <p class="place__like-count">0</p>
+                </div>
             </div>
         </article>
     </template>
@@ -53,10 +59,12 @@
                 <h3 class="edit-box__title">Edit profile</h3>
                 <input type="text" value="Francisco Coronado" id="profile-name"
                     class="edit-box__text edit-box__text_type_name" name="name" minlength="2" maxlength="40" required>
-                    <span class="edit-box__text-error edit-box__text-error_type_name" id="profile-name-error"></span>
+                <span class="edit-box__text-error edit-box__text-error_type_name" id="profile-name-error"></span>
                 <input type="text" value="Conquistador" id="profile-descriptor"
-                    class="edit-box__text edit-box__text_type_descriptor" name="descriptor" minlength="2" maxlength="200" required>
-                    <span class="edit-box__text-error edit-box__text-error_type_descriptor" id="profile-descriptor-error"></span>
+                    class="edit-box__text edit-box__text_type_descriptor" name="descriptor" minlength="2"
+                    maxlength="200" required>
+                <span class="edit-box__text-error edit-box__text-error_type_descriptor"
+                    id="profile-descriptor-error"></span>
                 <button type="submit" id="profile-submit" class="edit-box__submit" name="edit-box-submit"
                     aria-label="submit">Save</button>
             </form>
@@ -68,12 +76,12 @@
             <button class="popup__exit popup__exit_add-place" aria-label="exit"></button>
             <form class="edit-box edit-box_place" name="edit-box" novalidate>
                 <h3 class="edit-box__title">New place</h3>
-                <input type="text" placeholder="Title" id="place-title" value= "" class="edit-box__text edit-box__text_type_name"
-                    name="name" minlength="1" maxlength="30" required>
-                    <span class="edit-box__text-error edit-box__text-error_type_place-title" id="place-title-error"></span>
-                <input type="url" placeholder="Image link" id="image-link" value= ""
+                <input type="text" placeholder="Title" id="place-title" value=""
+                    class="edit-box__text edit-box__text_type_name" name="name" minlength="1" maxlength="30" required>
+                <span class="edit-box__text-error edit-box__text-error_type_place-title" id="place-title-error"></span>
+                <input type="url" placeholder="Image link" id="image-link" value=""
                     class="edit-box__text edit-box__text_type_descriptor" name="link" required>
-                    <span class="edit-box__text-error edit-box__text-error_type_url" id="image-link-error"></span>
+                <span class="edit-box__text-error edit-box__text-error_type_url" id="image-link-error"></span>
                 <button type="submit" id="add-place-submit" class="edit-box__submit" name="add-place-submit"
                     aria-label="submit">Create</button>
             </form>
@@ -85,6 +93,31 @@
             <button class="popup__exit popup__exit_image" aria-label="exit"></button>
             <img class="popup-image-container__pic" src="<%=require('./images/clipping_picture.png')%>" alt="landscape">
             <p class="popup-image-container__title"></p>
+        </div>
+    </section>
+
+    <section class="popup popup_card-delete">
+        <div class="popup__container">
+            <form class="edit-box edit-box_card-delete" name="edit-box">
+                <button class="popup__exit popup__exit_card-delete" aria-label="exit"></button>
+                <h3 class="edit-box__title">Are you sure?</h3>
+                <button type="submit" id="delete-place-submit" class="edit-box__submit" name="delete-place-submit"
+                    aria-label="submit">Yes</button>
+            </form>
+        </div>
+    </section>
+
+    <section class="popup popup_change-avatar">
+        <div class="popup__container">
+            <form class="edit-box edit-box_change-avatar" name="edit-box">
+                <button class="popup__exit popup__exit_change-avatar" aria-label="exit"></button>
+                <h3 class="edit-box__title">Change profile picture</h3>
+                <input type="url" placeholder="Avatar link" id="avatar-link" value=""
+                    class="edit-box__text edit-box__text_type_descriptor" name="link" required>
+                <span class="edit-box__text-error edit-box__text-error_type_url" id="avatar-link-error"></span>
+                <button type="submit" id="delete-place-submit" class="edit-box__submit" name="delete-place-submit"
+                    aria-label="submit">Save</button>
+            </form>
         </div>
     </section>
 </body>
