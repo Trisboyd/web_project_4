@@ -5,6 +5,12 @@ export const editName = document.querySelector(".edit-box__text_type_name");
 
 export const editDescriptor = document.querySelector(".edit-box__text_type_descriptor");
 
+export const profilePic = document.querySelector(".profile__pic");
+
+export const profilePicEdit = document.querySelector(".profile__pic_edit");
+
+export const profileImageContainer = document.querySelector(".profile__image-container");
+
 // Add Card/Place variables
 export const addPlaceButton = document.querySelector(".profile__add-place-button");
 
@@ -56,3 +62,4 @@ export const settings = {
 // Form Variables
 export const profileForm = document.querySelector(".edit-box_profile");
 export const placeForm = document.querySelector(".edit-box_place");
+export const avatarForm = document.querySelector(".edit-box_avatar");

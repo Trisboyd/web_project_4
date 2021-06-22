@@ -3,8 +3,8 @@
     left: 0;
     top: 40px;
     z-index: 2;
-    opacity: 0;
     visibility: hidden;
+    opacity: 0;
     transition: visibility 1s, opacity 1s ease;
     padding: 50px;
 }

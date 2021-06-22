@@ -13,16 +13,19 @@ import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 
 // javascript constants
-import {escKey, places, settings, profileForm, editProfileButton, placeForm, initialCards, addPlaceButton, editName, editDescriptor} from "../utilities/constants.js";
+import {escKey, places, settings, profileForm, profilePic, avatarForm, editProfileButton, placeForm, 
+    initialCards, addPlaceButton, editName, editDescriptor, profileImageContainer} from "../utilities/constants.js";
 
 
 // VALIDATION CODE_______________________________________________________________________________________________
 
 const profileValidator = new FormValidator(settings, profileForm);
 const addPlaceValidator = new FormValidator(settings, placeForm);
+const avatarValidator = new FormValidator(settings, avatarForm);
 
 profileValidator.enableFormValidation();
 addPlaceValidator.enableFormValidation();
+avatarValidator.enableFormValidation();
 
 
 // PROFILE POPUP______________________________________________________________________________________________
@@ -36,7 +39,6 @@ const profilePopup = new PopupWithForm({
         newUser.setUserInfo(inputObject);
         },
     }, "popup_profile-edit", escKey);
-
 
 // set event listeners for profilePopup
 profilePopup.setEventListeners();    
@@ -53,6 +55,24 @@ const inputProfileInfo = (data) => {
     editName.value = data.name;
     editDescriptor.value = data.descriptor;
 }
+
+// AVATAR POPUP_____________________________________________________________________________________________
+
+// Create avatar popup
+const avatarPopup = new PopupWithForm({
+    formSubmission: (inputObject) => {
+        profilePic.src = `<%=require('${inputObject.link}')%>`
+    }
+}, "popup_avatar", escKey);
+
+// Add event listener for avatar popup
+profileImageContainer.addEventListener("click", ()=> {
+    avatarPopup.open();
+    avatarValidator.resetValidation();
+})
+
+// Set Event Listeners
+avatarPopup.setEventListeners();
 
 
 // CARDS_______________________________________________________________________________________________
@@ -110,7 +130,7 @@ addPlacePopup.setEventListeners();
 
 const deleteConfirmationPopup = document.querySelector(".popup_card-delete");
 
-const changeAvatarPopup = document.querySelector(".popup_change-avatar");
+
 
 const popupVisible = (popup) => {
     popup.classList.add("popup_visible");
@@ -118,27 +138,10 @@ const popupVisible = (popup) => {
 
 const cardTrash = document.querySelector(".place__trash");
 
-const profilePic = document.querySelector(".profile__pic");
-
 cardTrash.addEventListener("click", () => {
     popupVisible(deleteConfirmationPopup);
 });
 
 
-//PROFILE AVATAR TESTS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-const editVisible = () => {
-    profilePicEdit.classList.toggle("profile__pic_edit_visible");
-    profilePic.classList.toggle("profile__pic_hovered");
-}
 
-const profileImageContainer = document.querySelector(".profile__image-container");
-
-const profilePicEdit = document.querySelector(".profile__pic_edit");
-
-profileImageContainer.addEventListener("mouseover", editVisible);
-profileImageContainer.addEventListener("mouseout", editVisible);
-
-profileImageContainer.addEventListener("click", () => {
-    popupVisible(changeAvatarPopup);
-})
