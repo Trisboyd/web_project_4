@@ -20,6 +20,20 @@ export const escKey = 27;
 // Places Grid Variable
 export const places = document.querySelector(".places");
 
+// Server url
+export const server = "https://around.nomoreparties.co/v1/group-12";
+
+// Server authorization
+export const token = "aa7e78f0-aba7-4938-a0ab-42cab952d914";
+
+// Server object
+// export const server = {
+//     url: "https://around.nomoreparties.co/v1/group-12",
+//     headers: {
+//         authorization: "aa7e78f0-aba7-4938-a0ab-42cab952d914"
+//     }
+// }
+
 // Initial Cards/Places Info
 export const initialCards = [
     {

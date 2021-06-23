@@ -11,10 +11,11 @@ import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
+import Api from "../components/Api.js";
 
 // javascript constants
 import {escKey, places, settings, profileForm, profilePic, avatarForm, editProfileButton, placeForm, 
-    initialCards, addPlaceButton, editName, editDescriptor, profileImageContainer} from "../utilities/constants.js";
+        addPlaceButton, editName, editDescriptor, profileImageContainer, server, token} from "../utilities/constants.js";
 
 
 // VALIDATION CODE_______________________________________________________________________________________________
@@ -27,11 +28,24 @@ profileValidator.enableFormValidation();
 addPlaceValidator.enableFormValidation();
 avatarValidator.enableFormValidation();
 
+// API INSTATIATION__________________________________________________________________________________________
+
+const api = new Api(server, token);
+
 
 // PROFILE POPUP______________________________________________________________________________________________
 
 // Create new instance of UserInfo
 const newUser = new UserInfo("profile__name", "profile__descriptor");
+
+
+// Set user info based on server
+api.getProfile().then(userData => {
+    newUser.setUserInfo({
+        name: userData.name,
+        descriptor: userData.about
+    });
+})
 
 // Create popup for editing profile which resets User Info based on popup inputs
 const profilePopup = new PopupWithForm({
@@ -95,16 +109,18 @@ const createCard = (cardData) => {
 }
 
 // Create section to render cards
-const cardList = new Section({
-    data: initialCards,
-    renderer: (initialCard) => {
-        const newCard = createCard(initialCard);
-        cardList.addItem(newCard.generateCard());
-    }
-    }, ".places"
-)
+api.getCardList().then(cardData => {
+    const cardList = new Section({
+        data: cardData,
+        renderer: (card) => {
+            const newCard = createCard(card);
+            cardList.addItem(newCard.generateCard());
+        }
+        }, ".places"
+    )
+    cardList.renderItems();
+})
 
-cardList.renderItems();
 
 // ADD A CARD POPUP______________________________________________________________________________________
 
@@ -128,19 +144,11 @@ addPlacePopup.setEventListeners();
 
 //TEST CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
-const deleteConfirmationPopup = document.querySelector(".popup_card-delete");
 
 
 
-const popupVisible = (popup) => {
-    popup.classList.add("popup_visible");
-}
+// api.getProfile().then(res => {console.log(res)});
 
-const cardTrash = document.querySelector(".place__trash");
-
-cardTrash.addEventListener("click", () => {
-    popupVisible(deleteConfirmationPopup);
-});
 
 
 
