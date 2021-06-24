@@ -25,39 +25,48 @@ export default class Api {
             .catch(err => {console.log(err)});
     }
 
-    // changeProfile({ data }) {
-    //     fetch(this._url + "users/me", {
-    //         method: "PATCH",
-    //         headers: this._headers,
-    //         body: JSON.stringify({
-    //             name: data.name,
-    //             about: data.descriptor
-    //         })
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`);
-    //         })
-    // }
+    changeProfile({ data }) {
+        return fetch(`${this._url}/users/me`, {
+            method: "PATCH",
+            headers: {
+                authorization: this._authToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: data.name,
+                about: data.descriptor
+            })
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+            .catch(err => {console.log(err)})
+    }
 
-    // addCard({ data }) {
-    //     fetch(this._url + "/cards", {
-    //         method: "POST",
-    //         headers: this._headers,
-    //         body: JSON.stringify({
-    //             name: data.name,
-    //             link: data.link
-    //         })
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`);
-    //         })
-    // }
+    addCard({data}) {
+        return fetch(`${this._url}/cards`, {
+            method: "POST",
+            headers: {
+                authorization: this._authToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: data.name,
+                link: data.link
+            })
+        })
+        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+        .catch(err => {console.log(err)})
+    }
+
+    deleteCard(cardId) {
+        return fetch(`${this._url}/cards/${cardId}`, {
+            method: "DELETE",
+            headers: {
+                authorization: this._authToken
+            }
+        })
+        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+        .catch(err => {console.log(err)})
+    }
 
     // deleteCard(card) {
     //     fetch(this._url + "/cards" + `/${card.id}`, {

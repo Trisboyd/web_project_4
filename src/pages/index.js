@@ -51,6 +51,7 @@ api.getProfile().then(userData => {
 const profilePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
         newUser.setUserInfo(inputObject);
+        api.changeProfile({data: inputObject});
         },
     }, "popup_profile-edit", escKey);
 
@@ -97,7 +98,7 @@ const imagePopup = new PopupWithImage("popup_image", escKey);
 // set exit event listeners for imagePopups
 imagePopup.setEventListeners();
 
-// Render initial cards
+// Create a card
 const createCard = (cardData) => {
     const newCard = new Card({
         data: cardData,
@@ -108,7 +109,7 @@ const createCard = (cardData) => {
     return newCard;
 }
 
-// Create section to render cards
+// Create section and render cards from server
 api.getCardList().then(cardData => {
     const cardList = new Section({
         data: cardData,
@@ -127,9 +128,11 @@ api.getCardList().then(cardData => {
 // Create popup for adding a Card
 const addPlacePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
-        const newCard = createCard(inputObject);
-        places.prepend(newCard.generateCard());
-    } 
+        api.addCard({data: inputObject}).then(cardData => {
+            const newCard = createCard(cardData);
+            places.prepend(newCard.generateCard());
+            })
+        } 
     }, "popup_add-place", escKey);
 
 
@@ -143,11 +146,6 @@ addPlaceButton.addEventListener("click", () => {
 addPlacePopup.setEventListeners();
 
 //TEST CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-
-
-
-// api.getProfile().then(res => {console.log(res)});
 
 
 
