@@ -5,11 +5,12 @@
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 export default class Card {
 
-    constructor ({ data, handleCardClick }, template) {
+    constructor ({ data, handleCardClick, handleDeleteClick }, template) {
         this._name = data.name;
         this._link = data.link;
         this._id = data.id;
         this._handleCardClick = handleCardClick;
+        this._handleDeleteClick = handleDeleteClick;
         this._template = template;
     }
 
@@ -48,7 +49,7 @@ export default class Card {
 
         this._element.querySelector(".place__trash")
         .addEventListener("click", () => {
-            this._removeCard();
+            this._handleDeleteClick(this._id);
         })
 
         this._element.querySelector(".place__image")
@@ -61,7 +62,7 @@ export default class Card {
     }
 
     // Click trash icon and remove card
-    _removeCard() {
+    removeCard() {
         this._element.querySelector(".place__trash")
         .parentElement.remove();
     }

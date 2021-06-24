@@ -16,6 +16,7 @@ import Api from "../components/Api.js";
 // javascript constants
 import {escKey, places, settings, profileForm, profilePic, avatarForm, editProfileButton, placeForm, 
         addPlaceButton, editName, editDescriptor, profileImageContainer, server, token} from "../utilities/constants.js";
+import PopupDelete from "../components/PopupDelete";
 
 
 // VALIDATION CODE_______________________________________________________________________________________________
@@ -98,12 +99,25 @@ const imagePopup = new PopupWithImage("popup_image", escKey);
 // set exit event listeners for imagePopups
 imagePopup.setEventListeners();
 
+// Create delete Card popup
+const deleteCardPopup = new PopupDelete("popup_card-delete", escKey);
+
 // Create a card
 const createCard = (cardData) => {
     const newCard = new Card({
         data: cardData,
         handleCardClick: () => {
             imagePopup.open({data: cardData})
+        },
+        handleDeleteClick: () => {
+            deleteCardPopup.open();
+            deleteCardPopup.setEventListeners({
+                formSubmission: () => {
+                    api.deleteCard(cardData._id).then(res => {
+                        newCard.removeCard();
+                    })
+                }
+            })
         }
     }, "#place-template");
     return newCard;
@@ -146,7 +160,6 @@ addPlaceButton.addEventListener("click", () => {
 addPlacePopup.setEventListeners();
 
 //TEST CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 
 
 
