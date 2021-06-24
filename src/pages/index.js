@@ -46,6 +46,7 @@ api.getProfile().then(userData => {
         name: userData.name,
         descriptor: userData.about
     });
+    profilePic.src = userData.avatar;
 })
 
 // Create popup for editing profile which resets User Info based on popup inputs
@@ -77,7 +78,12 @@ const inputProfileInfo = (data) => {
 // Create avatar popup
 const avatarPopup = new PopupWithForm({
     formSubmission: (inputObject) => {
-        profilePic.src = `<%=require('${inputObject.link}')%>`
+        api.changeAvatar(
+            inputObject.link
+        ).then(res => {
+            console.log(res);
+            profilePic.src = res.avatar;
+        })
     }
 }, "popup_avatar", escKey);
 

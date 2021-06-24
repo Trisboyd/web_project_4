@@ -68,19 +68,6 @@ export default class Api {
         .catch(err => {console.log(err)})
     }
 
-    // deleteCard(card) {
-    //     fetch(this._url + "/cards" + `/${card.id}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`);
-    //         })
-
-    // }
-
     // addLike(card) {
     //     fetch(this._url + "/cards/likes" + `/${card.id}`, {
     //         method: "PUT"
@@ -106,19 +93,18 @@ export default class Api {
 
     // }
 
-    // changeAvatar(link) {
-    //     fetch(this._url + "users/me/avatar", {
-    //         method: "PATCH",
-    //         headers: this._headers,
-    //         body: JSON.stringify({
-    //             avatar: link
-    //         })
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`);
-    //         })
-    // }
+    changeAvatar(link) {
+        return fetch(`${this._url}/users/me/avatar`, {
+            method: "PATCH",
+            headers: {
+                authorization: this._authToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                avatar: link
+            })
+        })
+            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+            .catch(err => {console.log(err)})
+    }
 }
