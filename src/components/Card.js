@@ -5,12 +5,15 @@
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 export default class Card {
 
-    constructor ({ data, handleCardClick, handleDeleteClick }, template) {
+    constructor ({ data, handleCardClick, handleDeleteClick, handleLikeAdd, handleLikeDelete }, template) {
         this._name = data.name;
         this._link = data.link;
-        this._id = data.id;
+        this._id = data._id;
+        this._likeArray = data.likes;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
+        this._handleLikeAdd = handleLikeAdd;
+        this._handleLikeDelete = handleLikeDelete;
         this._template = template;
     }
 
@@ -30,21 +33,28 @@ export default class Card {
         this._element.querySelector(".place__name").textContent = this._name;
         this._element.querySelector(".place__image").src = this._link;
         this._element.querySelector(".place__image").alt = this._name;
+        this._element.querySelector(".place__like-count").textContent = this._likeArray.length;
         this._setEventListeners();
 
         return this._element;
     }
 
-    getId() {
-        return this._id;
-    }
-
-
     // Set all event listeners
     _setEventListeners() {
         this._element.querySelector(".place__button")
         .addEventListener("click", () => {
-            this._toggleHeart();
+            if (this._likeArray.some(like => {
+                return like._id === "790d2a76d08d07fcb42879ff"
+            })) {
+                this._handleLikeDelete(
+                    this._id
+                )
+            }
+            else {
+                this._handleLikeAdd(
+                    this._id
+                )
+            }
         })
 
         this._element.querySelector(".place__trash")
@@ -67,10 +77,19 @@ export default class Card {
         .parentElement.remove();
     }
 
-    // Toggle heart: filled or unfilled
-    _toggleHeart() {
+    // Fill in heart and add like 
+    addHeart() {
         this._element.querySelector(".place__button")
         .classList
-        .toggle("place__button_type_filled")
+        .add("place__button_type_filled");
+        this._element.querySelector(".place__like-count").textContent = (this._likeArray.length);
+    }
+
+    // Unfill heart and subtract from likes
+    removeHeart() {
+        this._element.querySelector(".place__button")
+        .classList
+        .remove("place__button_type_filled");
+        this._element.querySelector(".place__like-count").textContent = (this._likeArray.length);
     }
 }

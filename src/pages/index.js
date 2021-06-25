@@ -124,6 +124,16 @@ const createCard = (cardData) => {
                     })
                 }
             })
+        },
+        handleLikeAdd: (id) => {
+            api.addLike(id).then(res => {
+                newCard.addHeart();
+            })
+        },
+        handleLikeDelete: (id) => {
+            api.removeLike(id).then(res => {
+                newCard.removeHeart();
+            })
         }
     }, "#place-template");
     return newCard;

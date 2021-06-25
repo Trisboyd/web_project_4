@@ -68,30 +68,27 @@ export default class Api {
         .catch(err => {console.log(err)})
     }
 
-    // addLike(card) {
-    //     fetch(this._url + "/cards/likes" + `/${card.id}`, {
-    //         method: "PUT"
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`);
-    //         })
-    // }
+    addLike(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: "PUT",
+            headers: {
+                authorization: this._authToken
+            }
+        })
+        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+        .catch(err => {console.log(err)})
+    }
 
-    // removeLike(card) {
-    //     fetch(this._url + "/cards/likes" + `/${card.id}`, {
-    //         method: "DELETE"
-    //     })
-    //         .then(res => {
-    //             if (res.ok) {
-    //                 return res.json();
-    //             }
-    //             return Promise.reject(`Error: ${res.status}`);
-    //         })
-
-    // }
+    removeLike(cardId) {
+        return fetch(`${this._url}/cards/likes/${cardId}`, {
+            method: "DELETE",
+            headers: {
+                authorization: this._authToken
+            }
+        })
+        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
+        .catch(err => {console.log(err)})
+    }
 
     changeAvatar(link) {
         return fetch(`${this._url}/users/me/avatar`, {
