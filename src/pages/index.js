@@ -52,8 +52,11 @@ api.getProfile().then(userData => {
 // Create popup for editing profile which resets User Info based on popup inputs
 const profilePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
+        profilePopup.renderLoading(true);
         newUser.setUserInfo(inputObject);
-        api.changeProfile({data: inputObject});
+        api.changeProfile({data: inputObject}).finally(() => {
+            profilePopup.renderLoading(false);
+        });
         },
     }, "popup_profile-edit", escKey);
 
@@ -78,12 +81,16 @@ const inputProfileInfo = (data) => {
 // Create avatar popup
 const avatarPopup = new PopupWithForm({
     formSubmission: (inputObject) => {
+        avatarPopup.renderLoading(true);
         api.changeAvatar(
             inputObject.link
         ).then(res => {
             console.log(res);
             profilePic.src = res.avatar;
         })
+        .finally(() => {
+            avatarPopup.renderLoading(false);
+        });
     }
 }, "popup_avatar", escKey);
 
@@ -160,10 +167,14 @@ api.getCardList().then(cardData => {
 // Create popup for adding a Card
 const addPlacePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
+        addPlacePopup.renderLoading(true);
         api.addCard({data: inputObject}).then(cardData => {
             const newCard = createCard(cardData);
             places.prepend(newCard.generateCard());
             })
+            .finally(() => {
+                addPlacePopup.renderLoading(false);
+            });
         } 
     }, "popup_add-place", escKey);
 
