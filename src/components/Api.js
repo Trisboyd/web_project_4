@@ -1,4 +1,4 @@
-// import { reject } from "core-js/fn/promise";
+// API class for server connections
 
 export default class Api {
 
@@ -7,6 +7,7 @@ export default class Api {
         this._authToken = authToken;
     }
 
+    // gather profile data
     getProfile() {
         return fetch(`${this._url}/users/me`, {
             headers: {
@@ -16,6 +17,7 @@ export default class Api {
             .catch(err => {console.log(err)});
     }
 
+    // gather cards from server
     getCardList() {
         return fetch(`${this._url}/cards`, {
             headers: {
@@ -25,6 +27,7 @@ export default class Api {
             .catch(err => {console.log(err)});
     }
 
+    // update profile info on server based on user changes
     changeProfile({ data }) {
         return fetch(`${this._url}/users/me`, {
             method: "PATCH",
@@ -41,6 +44,7 @@ export default class Api {
             .catch(err => {console.log(err)})
     }
 
+    // add card to server
     addCard({data}) {
         return fetch(`${this._url}/cards`, {
             method: "POST",
@@ -57,6 +61,7 @@ export default class Api {
         .catch(err => {console.log(err)})
     }
 
+    // delete card from server
     deleteCard(cardId) {
         return fetch(`${this._url}/cards/${cardId}`, {
             method: "DELETE",
@@ -68,6 +73,7 @@ export default class Api {
         .catch(err => {console.log(err)})
     }
 
+    // add a like to a card in the server
     addLike(cardId) {
         return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: "PUT",
@@ -79,6 +85,7 @@ export default class Api {
         .catch(err => {console.log(err)})
     }
 
+    // remove a like from a card in the server
     removeLike(cardId) {
         return fetch(`${this._url}/cards/likes/${cardId}`, {
             method: "DELETE",
@@ -90,6 +97,7 @@ export default class Api {
         .catch(err => {console.log(err)})
     }
 
+    // changer avatar (you guessed it... in the server)
     changeAvatar(link) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: "PATCH",

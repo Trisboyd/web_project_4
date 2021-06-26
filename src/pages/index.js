@@ -115,7 +115,7 @@ const createCard = (cardData) => {
         handleCardClick: () => {
             imagePopup.open({data: cardData})
         },
-        handleDeleteClick: () => {
+        handleDeleteClick: () => { //activates delete card popup, if confirmed then deletes card from page and server
             deleteCardPopup.open();
             deleteCardPopup.setEventListeners({
                 formSubmission: () => {
@@ -125,13 +125,13 @@ const createCard = (cardData) => {
                 }
             })
         },
-        handleLikeAdd: (id) => {
+        handleLikeAdd: (id) => { //add likes to card and server
             api.addLike(id).then(res => {
                 newCard.addHeart();
                 newCard.setLikes(res);
             })
         },
-        handleLikeDelete: (id) => {
+        handleLikeDelete: (id) => { //removes like from card and server
             api.removeLike(id).then(res => {
                 newCard.removeHeart();
                 newCard.setLikes(res);
@@ -176,15 +176,5 @@ addPlaceButton.addEventListener("click", () => {
 
 // Add event listeners for "add place"
 addPlacePopup.setEventListeners();
-
-//TEST CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
-// api.getLikeInfo("60d103a76db34e02838946fe").then(res => {
-//     console.log(res);
-// })
-
-// api.removeLike("60d103a76db34e02838946fe").then(res=> {
-//     console.log(res);
-// })
 
 

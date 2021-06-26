@@ -1,7 +1,6 @@
 // CODE NOTE, PLACE AND CARD ARE USED INTERCHANGEABLY, THEY BOTH REFERENCE THE SAME
 // OBJECT WHICH CONTAINS AN IMG, TITLE, AND LIKE BUTTON REPRESENTED BY A HEART
 
-import { data } from "autoprefixer";
 
 
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
@@ -47,6 +46,7 @@ export default class Card {
         return this._element;
     }
 
+    // Remove trash icons from non-user cards so they can't be deleted
     _filterUserCards() {
         if (this._userId !== "790d2a76d08d07fcb42879ff") {
             this._element.querySelector(".place__trash").remove();
@@ -105,6 +105,7 @@ export default class Card {
         .remove("place__button_type_filled");
     }
 
+    // Set like content on page based on Api response
     setLikes(res) {
         this._element.querySelector(".place__like-count").textContent = res.likes.length;
         this._likeArray = res.likes;
