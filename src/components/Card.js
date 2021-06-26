@@ -1,6 +1,8 @@
 // CODE NOTE, PLACE AND CARD ARE USED INTERCHANGEABLY, THEY BOTH REFERENCE THE SAME
 // OBJECT WHICH CONTAINS AN IMG, TITLE, AND LIKE BUTTON REPRESENTED BY A HEART
 
+import { data } from "autoprefixer";
+
 
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 export default class Card {
@@ -9,6 +11,7 @@ export default class Card {
         this._name = data.name;
         this._link = data.link;
         this._id = data._id;
+        this._userId = data.owner._id;
         this._likeArray = data.likes;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
@@ -35,8 +38,19 @@ export default class Card {
         this._element.querySelector(".place__image").alt = this._name;
         this._element.querySelector(".place__like-count").textContent = this._likeArray.length;
         this._setEventListeners();
-
+        this._filterUserCards();
+        if (this._likeArray.some(like => {
+            return like._id === "790d2a76d08d07fcb42879ff"
+        })) {
+            this.addHeart()
+        }
         return this._element;
+    }
+
+    _filterUserCards() {
+        if (this._userId !== "790d2a76d08d07fcb42879ff") {
+            this._element.querySelector(".place__trash").remove();
+        }
     }
 
     // Set all event listeners
@@ -82,7 +96,6 @@ export default class Card {
         this._element.querySelector(".place__button")
         .classList
         .add("place__button_type_filled");
-        this._element.querySelector(".place__like-count").textContent = (this._likeArray.length);
     }
 
     // Unfill heart and subtract from likes
@@ -90,6 +103,10 @@ export default class Card {
         this._element.querySelector(".place__button")
         .classList
         .remove("place__button_type_filled");
-        this._element.querySelector(".place__like-count").textContent = (this._likeArray.length);
+    }
+
+    setLikes(res) {
+        this._element.querySelector(".place__like-count").textContent = res.likes.length;
+        this._likeArray = res.likes;
     }
 }

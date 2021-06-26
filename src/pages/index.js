@@ -128,13 +128,15 @@ const createCard = (cardData) => {
         handleLikeAdd: (id) => {
             api.addLike(id).then(res => {
                 newCard.addHeart();
+                newCard.setLikes(res);
             })
         },
         handleLikeDelete: (id) => {
             api.removeLike(id).then(res => {
                 newCard.removeHeart();
-            })
-        }
+                newCard.setLikes(res);
+        })
+    }
     }, "#place-template");
     return newCard;
 }
@@ -177,6 +179,12 @@ addPlacePopup.setEventListeners();
 
 //TEST CODE!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
+// api.getLikeInfo("60d103a76db34e02838946fe").then(res => {
+//     console.log(res);
+// })
 
+// api.removeLike("60d103a76db34e02838946fe").then(res=> {
+//     console.log(res);
+// })
 
 
