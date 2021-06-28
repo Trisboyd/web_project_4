@@ -17,6 +17,7 @@ import Api from "../components/Api.js";
 import {escKey, places, settings, profileForm, profilePic, avatarForm, editProfileButton, placeForm, 
         addPlaceButton, editName, editDescriptor, profileImageContainer, server, token} from "../utilities/constants.js";
 import PopupDelete from "../components/PopupDelete";
+import { data } from "autoprefixer";
 
 
 // VALIDATION CODE_______________________________________________________________________________________________
@@ -37,16 +38,16 @@ const api = new Api(server, token);
 // PROFILE POPUP______________________________________________________________________________________________
 
 // Create new instance of UserInfo
-const newUser = new UserInfo("profile__name", "profile__descriptor");
-
+const newUser = new UserInfo("profile__name", "profile__descriptor", "profile__pic", "profile");
 
 // Set user info based on server
 api.getProfile().then(userData => {
     newUser.setUserInfo({
         name: userData.name,
-        descriptor: userData.about
+        descriptor: userData.about,
+        avatar: userData.avatar,
+        userId: userData._id
     });
-    profilePic.src = userData.avatar;
 })
 
 // Create popup for editing profile which resets User Info based on popup inputs
@@ -85,8 +86,11 @@ const avatarPopup = new PopupWithForm({
         api.changeAvatar(
             inputObject.link
         ).then(res => {
-            console.log(res);
-            profilePic.src = res.avatar;
+            newUser.setUserInfo({
+                name: res.name,
+                descriptor: res.about,
+                avatar: res.avatar
+            });
         })
         .finally(() => {
             avatarPopup.renderLoading(false);
@@ -187,5 +191,13 @@ addPlaceButton.addEventListener("click", () => {
 
 // Add event listeners for "add place"
 addPlacePopup.setEventListeners();
+
+
+
+// TEST CODE SPOT__________________________________________________
+
+// api.getPageInfo().then(res => {console.log(res)}).catch(err => {console.log(err)});
+
+// console.log(newUser.getUserInfo());
 
 

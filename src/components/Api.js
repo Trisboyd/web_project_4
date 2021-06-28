@@ -13,8 +13,9 @@ export default class Api {
             headers: {
                 authorization: this._authToken}
             })
-            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`) )
-            .catch(err => {console.log(err)});
+            .then((res) => {
+                return this._checkResponse(res)
+            });
     }
 
     // gather cards from server
@@ -23,8 +24,17 @@ export default class Api {
             headers: {
                 authorization: this._authToken}
             })
-            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-            .catch(err => {console.log(err)});
+            .then((res) => {
+                return this._checkResponse(res)
+            });
+    }
+
+    // method for combining getCardList and getProfileInfo into one Promise
+    getPageInfo() {
+        return Promise.all([this.getProfile(), this.getCardList()])
+        .then((res) => {
+            return this._checkResponse(res)
+        })
     }
 
     // update profile info on server based on user changes
@@ -40,8 +50,9 @@ export default class Api {
                 about: data.descriptor
             })
         })
-            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-            .catch(err => {console.log(err)})
+        .then((res) => {
+            return this._checkResponse(res)
+        });
     }
 
     // add card to server
@@ -57,8 +68,9 @@ export default class Api {
                 link: data.link
             })
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch(err => {console.log(err)})
+        .then((res) => {
+            return this._checkResponse(res)
+        });
     }
 
     // delete card from server
@@ -69,8 +81,9 @@ export default class Api {
                 authorization: this._authToken
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch(err => {console.log(err)})
+        .then((res) => {
+            return this._checkResponse(res)
+        });
     }
 
     // add a like to a card in the server
@@ -81,8 +94,9 @@ export default class Api {
                 authorization: this._authToken
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch(err => {console.log(err)})
+        .then((res) => {
+            return this._checkResponse(res)
+        });
     }
 
     // remove a like from a card in the server
@@ -93,11 +107,12 @@ export default class Api {
                 authorization: this._authToken
             }
         })
-        .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-        .catch(err => {console.log(err)})
+        .then((res) => {
+            return this._checkResponse(res)
+        });
     }
 
-    // changer avatar (you guessed it... in the server)
+    // change avatar (you guessed it... in the server)
     changeAvatar(link) {
         return fetch(`${this._url}/users/me/avatar`, {
             method: "PATCH",
@@ -109,7 +124,20 @@ export default class Api {
                 avatar: link
             })
         })
-            .then(res => res.ok ? res.json() : Promise.reject(`Error: ${res.status}`))
-            .catch(err => {console.log(err)})
+        .then((res) => {
+            return this._checkResponse(res)
+        });
+    }
+
+    // Check if response is valid
+    _checkResponse(res) {
+        if (res.ok) {
+            return res.json()
+        }
+        else {
+            return Promise.reject(`Error: ${res.status}`)
+        }
     }
 }
+
+// .catch(err => {console.log(err)})
