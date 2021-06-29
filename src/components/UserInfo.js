@@ -7,10 +7,14 @@ export default class UserInfo {
     }
 
     setUserInfo(data) {
-        this._name.textContent = data.name;
-        this._descriptor.textContent = data.descriptor;
+        this.changeUserInfo(data);
         this._avatar.src = data.avatar;
         this._userId = data.userId;
+    }
+
+    changeUserInfo(data) {
+        this._name.textContent = data.name;
+        this._descriptor.textContent = data.descriptor;
     }
 
     getUserInfo() {

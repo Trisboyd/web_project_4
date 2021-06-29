@@ -14,8 +14,10 @@ import Section from "../components/Section.js";
 import Api from "../components/Api.js";
 
 // javascript constants
-import {escKey, places, settings, profileForm, profilePic, avatarForm, editProfileButton, placeForm, 
-        addPlaceButton, editName, editDescriptor, profileImageContainer, server, token} from "../utilities/constants.js";
+import {
+    escKey, places, settings, profileForm, profilePic, avatarForm, editProfileButton, placeForm,
+    addPlaceButton, editName, editDescriptor, profileImageContainer, server, token
+} from "../utilities/constants.js";
 import PopupDelete from "../components/PopupDelete";
 import { data } from "autoprefixer";
 
@@ -54,15 +56,20 @@ api.getProfile().then(userData => {
 const profilePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
         profilePopup.renderLoading(true);
-        newUser.setUserInfo(inputObject);
-        api.changeProfile({data: inputObject}).finally(() => {
-            profilePopup.renderLoading(false);
-        });
-        },
-    }, "popup_profile-edit", escKey);
+        api.changeProfile({ data: inputObject })
+            .then(() => {
+                newUser.changeUserInfo(inputObject);
+                profilePopup.close();
+            })
+            .catch(err => { console.log(err) })
+            .finally(() => {
+                profilePopup.renderLoading(false);
+            });
+    },
+}, "popup_profile-edit", escKey);
 
 // set event listeners for profilePopup
-profilePopup.setEventListeners();    
+profilePopup.setEventListeners();
 
 // Add event listener on "edit profile" to open profilePopup
 editProfileButton.addEventListener("click", () => {
@@ -89,17 +96,20 @@ const avatarPopup = new PopupWithForm({
             newUser.setUserInfo({
                 name: res.name,
                 descriptor: res.about,
-                avatar: res.avatar
+                avatar: res.avatar,
+                userId: res._id
             });
+            avatarPopup.close();
         })
-        .finally(() => {
-            avatarPopup.renderLoading(false);
-        });
+            .catch(err => { console.log(err) })
+            .finally(() => {
+                avatarPopup.renderLoading(false);
+            });
     }
 }, "popup_avatar", escKey);
 
 // Add event listener for avatar popup
-profileImageContainer.addEventListener("click", ()=> {
+profileImageContainer.addEventListener("click", () => {
     avatarPopup.open();
     avatarValidator.resetValidation();
 })
@@ -124,7 +134,7 @@ const createCard = (cardData) => {
     const newCard = new Card({
         data: cardData,
         handleCardClick: () => {
-            imagePopup.open({data: cardData})
+            imagePopup.open({ data: cardData })
         },
         handleDeleteClick: () => { //activates delete card popup, if confirmed then deletes card from page and server
             deleteCardPopup.open();
@@ -134,6 +144,7 @@ const createCard = (cardData) => {
                         newCard.removeCard();
                         deleteCardPopup.close();
                     })
+                        .catch(err => { console.log(err) })
                 }
             })
             deleteCardPopup.setEventListeners();
@@ -148,8 +159,9 @@ const createCard = (cardData) => {
             api.removeLike(id).then(res => {
                 newCard.removeHeart();
                 newCard.setLikes(res);
-        })
-    }
+            })
+                .catch(err => { console.log(err) })
+        }
     }, newUser.getUserId(), "#place-template");
     return newCard;
 }
@@ -162,10 +174,11 @@ api.getCardList().then(cardData => {
             const newCard = createCard(card);
             cardList.addItem(newCard.generateCard());
         }
-        }, ".places"
+    }, ".places"
     )
     cardList.renderItems();
 })
+    .catch(err => { console.log(err) })
 
 
 // ADD A CARD POPUP______________________________________________________________________________________
@@ -174,15 +187,17 @@ api.getCardList().then(cardData => {
 const addPlacePopup = new PopupWithForm({
     formSubmission: (inputObject) => {
         addPlacePopup.renderLoading(true);
-        api.addCard({data: inputObject}).then(cardData => {
+        api.addCard({ data: inputObject }).then(cardData => {
             const newCard = createCard(cardData);
             places.prepend(newCard.generateCard());
-            })
+            addPlacePopup.close();
+        })
+            .catch(err => { console.log(err) })
             .finally(() => {
                 addPlacePopup.renderLoading(false);
             });
-        } 
-    }, "popup_add-place", escKey);
+    }
+}, "popup_add-place", escKey);
 
 
 // Add event listener for "add place" button to open addPlace
@@ -199,7 +214,5 @@ addPlacePopup.setEventListeners();
 // TEST CODE SPOT__________________________________________________
 
 // api.getPageInfo().then(res => {console.log(res)}).catch(err => {console.log(err)});
-
-// console.log(newUser.getUserInfo());
 
 

@@ -40,7 +40,6 @@ export default class Popup {
             }
             if (targetElement.classList.contains("popup__exit")) {
                 this.close();
-                console.log("closed by X")
                 }
             })
 
