@@ -8,13 +8,16 @@ export default class PopupDelete extends Popup{
         super(popupSelector, escKey);
     }
 
-    setEventListeners({formSubmission}) {
+    setEventListeners() {
         super.setEventListeners();
         this._form = this._popup.querySelector(".edit-box");
         this._form.addEventListener("submit", (evt) => {
             evt.preventDefault();
-            this.close();
-            formSubmission();
+            this._formSubmit();
         })
+    }
+
+    setDeleteHandler({formSubmission}) {
+        this._formSubmit = formSubmission;
     }
 }

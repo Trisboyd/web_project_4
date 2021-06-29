@@ -54,7 +54,7 @@
 
     <section class="popup popup_profile-edit">
         <div class="popup__container">
-            <button class="popup__exit popup__exit_edit-profile" aria-label="exit"></button>
+            <button class="popup__exit popup__exit_edit-profile" type="button" aria-label="exit"></button>
             <form class="edit-box edit-box_profile" name="edit-box" novalidate>
                 <h3 class="edit-box__title">Edit profile</h3>
                 <input type="text" value="Francisco Coronado" id="profile-name"
@@ -73,7 +73,7 @@
 
     <section class="popup popup_add-place">
         <div class="popup__container">
-            <button class="popup__exit popup__exit_add-place" aria-label="exit"></button>
+            <button class="popup__exit popup__exit_add-place" type="button" aria-label="exit"></button>
             <form class="edit-box edit-box_place" name="edit-box" novalidate>
                 <h3 class="edit-box__title">New place</h3>
                 <input type="text" placeholder="Title" id="place-title" value=""
@@ -90,7 +90,7 @@
 
     <section class="popup popup_image">
         <div class="popup-image-container">
-            <button class="popup__exit popup__exit_image" aria-label="exit"></button>
+            <button class="popup__exit popup__exit_image" type="button" aria-label="exit"></button>
             <img class="popup-image-container__pic" src="<%=require('./images/clipping_picture.png')%>" alt="landscape">
             <p class="popup-image-container__title"></p>
         </div>
@@ -99,7 +99,7 @@
     <section class="popup popup_card-delete">
         <div class="popup__container">
             <form class="edit-box edit-box_card-delete" name="edit-box">
-                <button class="popup__exit popup__exit_card-delete" aria-label="exit"></button>
+                <button class="popup__exit popup__exit_card-delete" type="button" aria-label="exit"></button>
                 <h3 class="edit-box__title">Are you sure?</h3>
                 <button type="submit" id="delete-place-submit" class="edit-box__submit" name="delete-place-submit"
                     aria-label="submit">Yes</button>
@@ -110,7 +110,7 @@
     <section class="popup popup_avatar">
         <div class="popup__container">
             <form class="edit-box edit-box_avatar" name="edit-box">
-                <button class="popup__exit popup__exit_change-avatar" aria-label="exit"></button>
+                <button class="popup__exit popup__exit_change-avatar" type="button" aria-label="exit"></button>
                 <h3 class="edit-box__title">Change profile picture</h3>
                 <input type="url" placeholder="Avatar link" id="avatar-link" value=""
                     class="edit-box__text edit-box__text_type_descriptor" name="link" required>

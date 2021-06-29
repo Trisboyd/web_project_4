@@ -128,13 +128,15 @@ const createCard = (cardData) => {
         },
         handleDeleteClick: () => { //activates delete card popup, if confirmed then deletes card from page and server
             deleteCardPopup.open();
-            deleteCardPopup.setEventListeners({
+            deleteCardPopup.setDeleteHandler({
                 formSubmission: () => {
                     api.deleteCard(cardData._id).then(res => {
                         newCard.removeCard();
+                        deleteCardPopup.close();
                     })
                 }
             })
+            deleteCardPopup.setEventListeners();
         },
         handleLikeAdd: (id) => { //add likes to card and server
             api.addLike(id).then(res => {
