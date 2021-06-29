@@ -6,16 +6,17 @@
 // CLASS FOR CARD/PLACE-----------------------------------------------------------------------------
 export default class Card {
 
-    constructor ({ data, handleCardClick, handleDeleteClick, handleLikeAdd, handleLikeDelete }, template) {
+    constructor ({ data, handleCardClick, handleDeleteClick, handleLikeAdd, handleLikeDelete }, ownerId, template) {
         this._name = data.name;
         this._link = data.link;
         this._id = data._id;
-        this._userId = data.owner._id;
+        this._cardUserId = data.owner._id; //the id of the owner of an individual card
         this._likeArray = data.likes;
         this._handleCardClick = handleCardClick;
         this._handleDeleteClick = handleDeleteClick;
         this._handleLikeAdd = handleLikeAdd;
         this._handleLikeDelete = handleLikeDelete;
+        this._ownerId = ownerId; //the id of the owner of the profile viewing the cards
         this._template = template;
     }
 
@@ -39,7 +40,7 @@ export default class Card {
         this._setEventListeners();
         this._filterUserCards();
         if (this._likeArray.some(like => {
-            return like._id === "790d2a76d08d07fcb42879ff"
+            return like._id === this._ownerId;
         })) {
             this.addHeart()
         }
@@ -48,7 +49,7 @@ export default class Card {
 
     // Remove trash icons from non-user cards so they can't be deleted
     _filterUserCards() {
-        if (this._userId !== "790d2a76d08d07fcb42879ff") {
+        if (this._cardUserId !== this._ownerId) {
             this._element.querySelector(".place__trash").remove();
         }
     }
@@ -58,7 +59,7 @@ export default class Card {
         this._element.querySelector(".place__button")
         .addEventListener("click", () => {
             if (this._likeArray.some(like => {
-                return like._id === "790d2a76d08d07fcb42879ff"
+                return like._id === this._ownerId;
             })) {
                 this._handleLikeDelete(
                     this._id

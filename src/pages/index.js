@@ -148,7 +148,7 @@ const createCard = (cardData) => {
                 newCard.setLikes(res);
         })
     }
-    }, "#place-template");
+    }, newUser.getUserId(), "#place-template");
     return newCard;
 }
 
