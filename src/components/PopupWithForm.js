@@ -9,11 +9,11 @@ export default class PopupWithForm extends Popup {
         super(popupSelector, escKey);
         this._formSubmit = formSubmission;
         // formSubmission should be the function that processes the submission of data into the popup
+        this._inputList = Array.from(this._popup.querySelectorAll(".edit-box__text"));
     }
 
     // Takes data from form inputs
     _getInputValues() {
-        this._inputList = Array.from(this._popup.querySelectorAll(".edit-box__text"));
         this.inputObject = {};
         this._inputList.forEach((input) => {
             const textInput = input.value;

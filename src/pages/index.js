@@ -42,6 +42,14 @@ const api = new Api(server, token);
 // Create new instance of UserInfo
 const newUser = new UserInfo("profile__name", "profile__descriptor", "profile__pic", "profile");
 
+// Create new instance of Section (class that renders cards)
+const cardList = new Section({
+    renderer: (card) => {
+        const newCard = createCard(card);
+        cardList.addItem(newCard.generateCard());
+    }
+}, ".places");
+
 // Load userinfo and cards
 
 Promise.all([api.getProfile(), api.getCardList()])
@@ -55,14 +63,7 @@ Promise.all([api.getProfile(), api.getCardList()])
             userId: userData._id
         });
 
-        const cardList = new Section({
-            data: cardData,
-            renderer: (card) => {
-                const newCard = createCard(card);
-                cardList.addItem(newCard.generateCard());
-            }
-        }, ".places")
-        cardList.renderItems();
+        cardList.renderItems(cardData);
     })
     .catch(err => {console.log(err)})
 
@@ -191,7 +192,7 @@ const addPlacePopup = new PopupWithForm({
         addPlacePopup.renderLoading(true);
         api.addCard({ data: inputObject }).then(cardData => {
             const newCard = createCard(cardData);
-            places.prepend(newCard.generateCard());
+            cardList.addItem(newCard.generateCard());
             addPlacePopup.close();
         })
             .catch(err => { console.log(err) })
