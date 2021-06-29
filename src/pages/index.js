@@ -37,20 +37,36 @@ avatarValidator.enableFormValidation();
 const api = new Api(server, token);
 
 
-// PROFILE POPUP______________________________________________________________________________________________
+// UPLOAD INITIAL PROFILE AND CARDS___________________________________________________________________________
 
 // Create new instance of UserInfo
 const newUser = new UserInfo("profile__name", "profile__descriptor", "profile__pic", "profile");
 
-// Set user info based on server
-api.getProfile().then(userData => {
-    newUser.setUserInfo({
-        name: userData.name,
-        descriptor: userData.about,
-        avatar: userData.avatar,
-        userId: userData._id
-    });
-})
+// Load userinfo and cards
+
+Promise.all([api.getProfile(), api.getCardList()])
+    .then(res => {
+        const [userData, cardData] = res;
+
+        newUser.setUserInfo({
+            name: userData.name,
+            descriptor: userData.about,
+            avatar: userData.avatar,
+            userId: userData._id
+        });
+
+        const cardList = new Section({
+            data: cardData,
+            renderer: (card) => {
+                const newCard = createCard(card);
+                cardList.addItem(newCard.generateCard());
+            }
+        }, ".places")
+        cardList.renderItems();
+    })
+    .catch(err => {console.log(err)})
+
+// PROFILE POPUP______________________________________________________________________________________________
 
 // Create popup for editing profile which resets User Info based on popup inputs
 const profilePopup = new PopupWithForm({
@@ -166,20 +182,6 @@ const createCard = (cardData) => {
     return newCard;
 }
 
-// Create section and render cards from server
-api.getCardList().then(cardData => {
-    const cardList = new Section({
-        data: cardData,
-        renderer: (card) => {
-            const newCard = createCard(card);
-            cardList.addItem(newCard.generateCard());
-        }
-    }, ".places"
-    )
-    cardList.renderItems();
-})
-    .catch(err => { console.log(err) })
-
 
 // ADD A CARD POPUP______________________________________________________________________________________
 
@@ -212,7 +214,4 @@ addPlacePopup.setEventListeners();
 
 
 // TEST CODE SPOT__________________________________________________
-
-// api.getPageInfo().then(res => {console.log(res)}).catch(err => {console.log(err)});
-
 
