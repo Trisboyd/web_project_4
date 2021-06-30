@@ -29,14 +29,6 @@ export default class Api {
             });
     }
 
-    // method for combining getCardList and getProfileInfo into one Promise
-    getPageInfo() {
-        return Promise.all([this.getProfile(), this.getCardList()])
-        .then((res) => {
-            return this._checkResponse(res)
-        })
-    }
-
     // update profile info on server based on user changes
     changeProfile({ data }) {
         return fetch(`${this._url}/users/me`, {
@@ -139,5 +131,3 @@ export default class Api {
         }
     }
 }
-
-// .catch(err => {console.log(err)})
