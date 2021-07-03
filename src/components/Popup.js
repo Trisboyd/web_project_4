@@ -22,16 +22,6 @@ export default class Popup {
         };
     }   
 
-    // indicate to user that process is occuring
-    renderLoading(isLoading) {
-        const submitButton = this._popup.querySelector(".edit-box__submit");
-        if (isLoading) {
-            submitButton.textContent = "Saving...";
-        }
-        else {submitButton.textContent = submitButton.value;
-        }
-    }
-
     setEventListeners() {
         this._popup.addEventListener("click", (event) => {
             const targetElement = event.target;

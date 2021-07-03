@@ -5,7 +5,7 @@ import Popup from "./Popup.js";
 
 export default class PopupWithForm extends Popup {
 
-    constructor( {formSubmission}, popupSelector, escKey) { 
+    constructor({ formSubmission }, popupSelector, escKey) {
         super(popupSelector, escKey);
         this._formSubmit = formSubmission;
         // formSubmission should be the function that processes the submission of data into the popup
@@ -41,4 +41,16 @@ export default class PopupWithForm extends Popup {
     _submitForm() {
         this._formSubmit(this._getInputValues());
     }
+
+    // indicate to user that process is occuring
+    renderLoading(isLoading) {
+        const submitButton = this._popup.querySelector(".edit-box__submit");
+        if (isLoading) {
+            submitButton.textContent = "Saving...";
+        }
+        else {
+            submitButton.textContent = submitButton.value;
+        }
+    }
 }
+
